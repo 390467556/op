@@ -1,0 +1,5 @@
+{
+ "price":8.2,
+ "dayBudget":1001,  
+ "app_name":"来疯直播"
+}
