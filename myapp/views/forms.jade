@@ -1,0 +1,72 @@
+extends layout
+
+block scripts 
+    script(src="/public/javascripts/lib/moment.js")    
+    script(src="/public/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
+    <script>
+		$(function () {
+			$(".menu li").click(function(){
+				$(this).addClass("border").siblings().removeClass("border");
+			});
+			$( ".date" ).datepicker();
+		});
+	</script>
+
+block stylesheets
+    link(href="/public/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
+    link(href="/public/stylesheets/forms.css", rel="stylesheet")    
+
+block content
+    div.content
+        h3 效果报表
+        div.menu
+            
+            ul
+                li
+                    a(href="/config") 前往设置页面
+                li.border
+                    a(href="javascript: void(0)") 前往报表页面
+            
+            div 下载报表
+
+            select.selectOne.special
+                option 小时消耗表
+                option ctr表
+                option 单价
+            
+            input.date(type="date", style="border:1px solid #ddd;")
+            span
+                input(type="radio", name="last30") 过去30天
+            span
+                input(type="radio", name="last7") 过去7天
+            span
+                input(type="radio" name="today") 今日
+            
+            select.selectTwo
+                option(value="") 全部应用
+                each app in apps
+                    option(value="")= app
+
+		//- 为每个表单建立的可复用模板
+mixin form(days, form, type, visable)
+	div.table("data-app"=form["app_name"], class=visable)
+        table(style="margin-top: 20px")
+		- var moment = require('moment')
+        //- 表头
+		tr
+			td
+			while days >= 0
+                td= moment().substract(--days, 'days').calendar() 
+        //- 边栏和表单内容
+		- for (var 0 = 0; i < 23; i++)
+			tr
+				td= n
+				- for (var j = 0; j < 3; j++)
+					td= form["units"][j][type]
+		
+		+form(n, form, "ctr", "active")
+		+form(n, form, "hourUse", "hidden")	
+		+form(n, form, "price", "hidden")		
+			
+</body>
+</html>
