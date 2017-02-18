@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>OPPO</title>
+	<script src="./jquery-3.1.1.min.js"></script>
+	<link href="jquery-ui/css/base/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <script src="jquery-ui/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script>
+		$(function () {
+			$(".menu li").click(function(){
+				$(this).addClass("border").siblings().removeClass("border");
+			});
+			$( ".date" ).datepicker();
+		});
+	</script>
+	<style>
+		body {
+			margin:0;
+			padding: 0;
+		}
+		.content {
+			width:1000px;
+			margin:0 auto;
+			overflow: hidden;
+		}
+		.menu {
+			overflow: hidden;
+		}
+		.menu ul {
+			width:100%;
+			border:1px solid #ddd;
+			height: 60px;
+			padding: 0 0 3px 0;
+			float: left;
+		}
+		.menu li {
+			list-style: none;
+			float: left;
+			width: 200px;
+			height: 60px;
+			text-align: center;
+			line-height: 60px;
+			font-size: 20px;
+			color:#777;
+		}
+		.border {
+			border-bottom: 3px solid #009966;
+			color:#009966;
+		}
+		.menu div {
+			width:80px;
+			height:30px;
+			border:1px solid #ddd;
+			text-align: center;
+			float: left;
+			line-height: 30px;
+			color:#777;
+			margin-top:15px;
+		}
+		.menu span,.date,select {
+			float: right;
+			height: 35px;
+			margin-top:15px;
+			line-height: 35px;
+			border-color: #ddd;
+			outline: none;
+		}
+		table {
+	    	table-layout : fixed ;
+	    	width:100%;
+	    	border-spacing: 0;
+	    	border-collapse:collapse;
+	    	padding:0;
+	    }
+		td {
+			padding: 0;
+			margin:0;
+			border: 1px solid #ddd;
+			width:10px;
+			height:25px;
+			overflow: hidden;
+			line-height: 25px;
+			text-align: center;
+		}
+		td.first {
+			width: 35px;
+		}
+		a {
+			text-decoration: none;
+			color: #777;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+	    <h3>效果报表</h3>
+		<div class="menu">
+			<ul>
+				<a href="./oppoSetting.html"><li class="border">设置页面</li></a>
+				<a href="./oppoForms.html"><li>报表页面</li></a>
+			</ul>
+			<div>下载报表</div>
+			<input type="date" class="date" style="border:1px solid #ddd;">
+			<span><input type="radio" name="time">过去30天</span>
+			<span><input type="radio" name="time">过去7天</span>
+			<span><input type="radio" name="time">今日</span>
+			<select class="select" >
+				<option value="">全部应用</option>
+				<option value="">来疯直播</option>
+			</select>
+		</div>
+		<div class="table">
+			<table style="margin-top: 20px">
+		        <tr>
+				    <td class="first">全天预设初价</td>
+				    <td>0</td>
+				    <td>1</td>
+				    <td>2</td>
+				    <td>3</td>
+				    <td>4</td>
+				    <td>5</td>
+				    <td>6</td>
+				    <td>7</td>
+				    <td>8</td>
+				    <td>9</td>
+				    <td>10</td>
+				    <td>11</td>
+				    <td>12</td>
+				    <td>13</td>
+				    <td>14</td>
+				    <td>15</td>
+				    <td>16</td>
+				    <td>17</td>
+				    <td>18</td>
+				    <td>19</td>
+				    <td>20</td>
+				    <td>21</td>
+				    <td>22</td>
+				    <td>23</td>
+			</tr>
+			<tr>
+				    <td class="first">单价</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+				    <td>1</td>
+			</tr>
+		</div>
+	</div>
+</body>
+</html>
