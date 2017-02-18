@@ -20,6 +20,4 @@ router.route('/register').get(function(req, res) {
 });
 
 
-
-
 module.exports = router;
