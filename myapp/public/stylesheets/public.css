@@ -1,0 +1,82 @@
+ body {
+	     	margin:0;
+	     	padding: 0;
+	     }
+		.content {
+			width:800px;
+			margin:0 auto;
+			overflow: hidden;
+		}
+		h2 {
+			float: left;
+		}
+		.border {
+			border-bottom: 1px solid black;
+			width:300px;
+			height: 1px;
+			margin:30px 10px 0 10px;
+			float: left;
+		}
+		.header {
+			width: 690px;
+			margin:0 auto;
+			overflow: hidden;
+			margin-top: 150px;
+		}
+		input,a {
+			float: left;
+			clear:both;
+			position: relative;
+			left:50%;
+			width:300px;
+			height: 35px;
+			margin-left: -150px;
+			margin-top: 30px;
+			border-radius: 5px;
+			border:1px solid #ddd;
+			font-size: 15px;
+			padding-left: 10px;
+			outline: none;
+		}
+		a {
+			text-decoration: none;
+			text-align: center;
+			line-height: 35px;
+			letter-spacing: 20px;
+            border:1px solid #FFCCCC;
+            color:#FFCCCC;
+            margin-top: 20px;
+		}
+		.button {
+			letter-spacing: 20px;
+			font-size: 15px;
+			background: #FFCCCC;
+			cursor: pointer;
+			color: #fff;
+			height: 40px;
+			border:none;
+			width:313px;
+		}
+		:-moz-placeholder {
+			font-size: 14px;
+			color:#666;
+			font-family: "Times New Roman",Georgia,Serif;
+			opacity: 0.5;
+		}
+		::-moz-placeholder {
+			font-size: 14px;
+			color:#666;
+			font-family: "Times New Roman",Georgia,Serif;
+		}
+		::-webkit-input-placeholder {
+			font-size: 14px;
+			color:#666;
+			font-family: "Times New Roman",Georgia,Serif;
+			opacity: 0.5;
+		}
+		:-ms-input-placeholde {
+			font-size: 14px;
+			color:#666;
+			font-family: "Times New Roman",Georgia,Serif;
+			opacity: 0.5;
+		}

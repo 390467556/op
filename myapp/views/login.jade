@@ -1,0 +1,17 @@
+extends layout
+
+block scripts
+    script(src="/public/javascripts/login.js")
+
+block content
+    div.content
+        div.header
+            span.border
+            h2 登录
+            span.border
+        form(action="", method="post")
+            input#user_name(type="text", placeholder= "用户名", name="user_name")
+            input#pwd(type="password", placeholder= "密码", name="pwd")
+            input.button#loginSubmit(type="submit", value="登录") 
+        a#submit(href="javascript:void(0)") 登录                   
+        a(href="/oppoRegister") 注册
