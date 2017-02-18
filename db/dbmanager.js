@@ -176,6 +176,16 @@ dbmanager.insertUser = function (name,pwd,userId,handle) {
      user.save(handle);
 };
 
+// 查询用户数据
+dbmanager.findUsers = function (filter,handler) {
+  if (!filter) {
+    userModel.find(handler);
+  } else {
+    userModel.find(filter,handler);
+  }
+};
+
+
 // 插入 task 数据
 dbmanager.insertTask = function (accountid,pid,appid,datetime,settingPrice) {
      var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice);
