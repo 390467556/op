@@ -198,6 +198,16 @@ dbmanager.insertShowdata = function (accountid,pid,appid,datetime,settingPrice,h
      showdata.save(handle);
 };
 
+// 查询展示数据
+
+dbmanager.findSpiderDatas = function (filter,handler) {
+  if (!filter) {
+    showdataModel.find(handler);
+  } else {
+    showdataModel.find(filter,handler);
+  }
+};
+
 
 // 插入 广告平台数据
 dbmanager.insertPlatform = function (name,id) {
