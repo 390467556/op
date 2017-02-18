@@ -125,7 +125,6 @@ function dbAccountWithParameters (name,pwd,id) {
       return account;
 }
 
-
 // app 数据
 
 var appSchema = new mongoose.Schema({
