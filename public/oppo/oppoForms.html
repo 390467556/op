@@ -12,9 +12,6 @@
 				$(this).addClass("border").siblings().removeClass("border");
 			});
 			$( ".date" ).datepicker();
-			$(".date").change(function(){
-				alert("nnnn")
-			});
 		});
 	</script>
 	<style>
@@ -113,6 +110,7 @@
 			<select class="selectOne special">
 			 <option>小时消耗表</option>
 			 <option>ctr表</option>
+			 <option>单价</option>
 			</select>
 			<input type="date" class="date" style="border:1px solid #ddd;">
 			<span><input type="radio" name="time">过去30天</span>
