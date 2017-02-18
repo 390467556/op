@@ -14,16 +14,6 @@ var userSchema  = new mongoose.Schema({
 });
 var userModel = db.model('User',userSchema);
 
-
-// 查询用户数据
-dbmanager.findUsers = function (filter,handler) {
-  if (!filter) {
-    userModel.find(handler);
-  } else {
-    userModel.find(filter,handler);
-  }
-};
-
 function dbUserWithParameters (name,pwd,userId) {
       var user = new userModel({
            username : name,
@@ -175,15 +165,26 @@ function dbUser_platform_account_appWithParameters (userid,pid,accountid,appid) 
 }
 
 //数据库连接
-dbmanager.connect = function() {
+dbmanager.connect = function(){
   mongoose.connect('mongodb://localhost/test');
 };
 
 // 插入用户数据
 dbmanager.insertUser = function (name,pwd,userId,handle) {
+
      var user = dbUserWithParameters(name,pwd,userId);
      user.save(handle);
 };
+
+// 查询用户数据
+dbmanager.findUsers = function (filter,handler) {
+  if (!filter) {
+    userModel.find(handler);
+  } else {
+    userModel.find(filter,handler);
+  }
+};
+
 
 // 插入 task 数据
 dbmanager.insertTask = function (accountid,pid,appid,datetime,settingPrice) {
