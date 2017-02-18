@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 // post用于登录
 router.post('/', (req, res) => {
-    
+    // 校验合法性
 })
 
 

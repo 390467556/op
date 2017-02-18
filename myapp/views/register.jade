@@ -2,6 +2,7 @@ extends layout
 
 block scripts
     script(src="/public/javascripts/register.js")
+    script alert(#{warn})
 
 block content
     div.content
@@ -10,9 +11,9 @@ block content
             h2 登录
             span.border
         form(action="/register", method="post")
-            input#userName(type="text", placeholder= "用户名", name="user_name")
+            input#userName(type="text", placeholder= "用户名", name="username")
             input#pwd(type="password", placeholder= "密码", name="pwd")
-            input#pwdCheck(type="password", placeholder= "确认密码", name="pwd_check")
+            input#pwdCheck(type="password", placeholder= "确认密码", name="pwdcheck")
             input#registerSubmit(type="submit", class= "button" style="display:none;")
         a#submit(href="javascript:void(0)") 注册
-    
+        

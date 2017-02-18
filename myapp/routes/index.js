@@ -15,7 +15,7 @@ router.route('/login').get(function(req, res) {
 router.route('/register').get(function(req, res) {
 		res.render('register');
 }).post(function(req, res) {
-     console.log(req.body);
+     
      res.send('test');
 });
 
