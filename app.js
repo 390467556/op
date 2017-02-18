@@ -1,5 +1,5 @@
 var express = require('express');
-var dbmanager = require('./dbmanager.js');
+var dbmanager = require('./db/dbmanager.js');
 var bodyParser = require('body-parser');
 var app = express();
 var router = express.Router();
