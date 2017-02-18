@@ -11,4 +11,6 @@ dbmanager.connect();
 //     console.log("user did saved");
 // });
 
-dbmanager.findUsers({"username" : "renguohua"});
+dbmanager.findUsers({"username" : "renguohu"},function (error, users) {
+    console.log(users);
+});
