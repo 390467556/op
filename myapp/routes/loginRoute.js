@@ -21,7 +21,13 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
+<<<<<<< HEAD:myapp/routes/loginRoute.js
              res.render('forms', {n: 3, forms: {"app_name": 'test'}, units: []});
+=======
+             console.log(users);
+               res.render('forms', formData());
+              // res.send("<center><h1>登录成功<h1></center>");
+>>>>>>> 8abbbd42355a54edd6515e403373651082a2ec64:myapp/routes/login.js
            }
          });
        }
@@ -32,7 +38,11 @@ router.post('/', (req, res) => {
 function formData() {
    var data = {
       "n" : 3,
+<<<<<<< HEAD:myapp/routes/loginRoute.js
       "forms" : {app_name: 'test'}
+=======
+      "form" : {}
+>>>>>>> 8abbbd42355a54edd6515e403373651082a2ec64:myapp/routes/login.js
    };
    return data;
 }
