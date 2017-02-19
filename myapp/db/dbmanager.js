@@ -170,10 +170,10 @@ dbmanager.connect = function(){
 };
 
 // 插入用户数据
-dbmanager.insertUser = function (name,pwd,userId,handle) {
+dbmanager.insertUser = function (name,pwd,userId,handler) {
 
      var user = dbUserWithParameters(name,pwd,userId);
-     user.save(handle);
+     user.save(handler);
 };
 
 // 查询用户数据
@@ -187,15 +187,21 @@ dbmanager.findUsers = function (filter,handler) {
 
 
 // 插入 task 数据
-dbmanager.insertTask = function (accountid,pid,appid,datetime,settingPrice) {
+dbmanager.insertTask = function (accountid,pid,appid,datetime,settingPrice,handler) {
      var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice);
-     task.save(handle);
+     task.save(handler);
 };
 
 // 插入展示数据
-dbmanager.insertShowdata = function (accountid,pid,appid,datetime,settingPrice,hourUsePara,ctrPara) {
+// accountid 用户平台账户 id
+// pid 平台用户 id
+// datetime 爬取数据的时间
+// settingPrice 该时刻设置的 价格
+// hourUsePara 当前该小时消耗
+// ctrPara  ctr
+dbmanager.insertShowdata = function (accountid,pid,appid,datetime,settingPrice,hourUsePara,ctrPara,handler) {
      var showdata = dbShowdataWithParameters(accountid,pid,appid,datetime,settingPrice,hourUsePara,ctrPara);
-     showdata.save(handle);
+     showdata.save(handler);
 };
 
 // 查询展示数据
@@ -210,32 +216,51 @@ dbmanager.findSpiderDatas = function (filter,handler) {
 
 
 // 插入 广告平台数据
-dbmanager.insertPlatform = function (name,id) {
+dbmanager.insertPlatform = function (name,id,handler) {
      var platform = dbPlatformWithParameters(name,id);
-     platform.save(handle);
+     platform.save(handler);
 };
 
 // 插入 app 数据
-dbmanager.insertApp = function (name,id) {
+dbmanager.insertApp = function (name,id,handler) {
      var app = dbAppWithParameters(name,id);
-     app.save(handle);
+     app.save(handler);
 };
 
 // 插入用户广告平台账号数据
-dbmanager.insertAccout = function (name,pwd,id) {
-     var account = dbAccountWithParameters(name,pwd,id);
-     account.save(handle);
+dbmanager.insertAccout = function (name,pwd,id,handler) {
+     var account = dbAccountWithParameters(name,pwd,id,handler);
+     account.save(handle,handler);
 };
 
 // 插入关系表
-dbmanager.insertUser_platform_account_app = function (userid,pid,accountid,appid) {
-     var user_platform_account_app = dbUser_platform_account_appWithParameters(name,pwd,id);
-     user_platform_account_app.save(handle);
+dbmanager.insertUser_platform_account_app = function (userid,pid,accountid,appid,handler) {
+     var user_platform_account_app = dbUser_platform_account_appWithParameters(name,pwd,id,handler);
+     user_platform_account_app.save(handler);
 };
 
 
 dbmanager.createid  = function() {
    return mongoose.Types.ObjectId().toString();
+};
+
+
+// 爬虫数据便利插入方法
+
+dbmanager.insertSpiderData = function (username,platformname,) {
+
+
+};
+
+dbmanager.saveTask = function(platformName,accountName,accountPassword,appName,dt,price,handler){
+
+     var pid = this.createid();
+     var accountid = this.createid();
+     vat appid = this.createid();
+     this.insertTask(accountid,pid,appid,dt,price,handler);
+     this.insertPlatform(platformName,pid,handler);
+     this.insertAccout(accountName,accountPassword,accountid,handler);
+     this.insertApp(appName,appid,handler);
 };
 
 // dbmanager.dbUserWithParameters = function (name,pwd,userId) {

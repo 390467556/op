@@ -22,7 +22,8 @@ router.post('/', (req, res) => {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
              console.log(users);
-              res.render('forms', formData());
+               res.render('forms', formData());
+              // res.send("<center><h1>登录成功<h1></center>");
            }
          });
        }
@@ -32,7 +33,7 @@ router.post('/', (req, res) => {
 
 function formData() {
    var data = {
-      "days" : 3,
+      "n" : 3,
       "form" : {}
    };
    return data;
