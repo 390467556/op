@@ -10,6 +10,9 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var config = require('./routes/config');
 
+var db = require('./db/dbmanager');
+db.connect(); 
+
 var app = express();
 
 // view engine setup

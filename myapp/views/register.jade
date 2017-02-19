@@ -3,7 +3,7 @@ extends layout
 block scripts
     script(src="/javascripts/register.js")
     if warn
-        script alert(#{warn})
+        script alert("#{warn}")
 
 block content
     div.content
@@ -17,4 +17,3 @@ block content
             input#pwdCheck(type="password", placeholder= "确认密码", name="pwdcheck")
             input#registerSubmit(type="submit", class= "button" style="display:none;")
         a#submit(href="javascript:void(0)") 注册
-        

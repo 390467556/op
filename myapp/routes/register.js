@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/dbmanager');
-db.connect();
+// db.connect();
 
 // 获取注册页面
 router.get('/', (req, res) => {
     res.render('register', {warn: undefined})
-})
+});
 
 // 校验注册合法,用户名重复
 router.post('/', (req, res) => {
@@ -22,8 +22,8 @@ router.post('/', (req, res) => {
         if (users.length === 0) {
             // userid
             var userid = db.createid();
-            console.log(userid);
-            db.insertUser(username, req.body.password, userid, (err, user) => {
+            console.log("password " + req.body.pwd);
+            db.insertUser(username, req.body.pwd, userid, (err, user) => {
                 if (err) {
                     console.log("Failed to insert user, username is " + username + "\nerror is :" + err);
                     res.render('register', {warn: "网络忙，请重试"});
