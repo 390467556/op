@@ -10,7 +10,7 @@ db.on('error',console.error);
 var userSchema  = new mongoose.Schema({
         username : {type : String},
         password : {type : String},
-        uid : Number
+        uid : {type : String}
 });
 var userModel = db.model('User',userSchema);
 
@@ -26,9 +26,9 @@ function dbUserWithParameters (name,pwd,userId) {
 // 任务 task
 
 var taskSchema  = new mongoose.Schema({
-        account_id : Number,
-        platform_id : Number,
-        app_id : Number,
+        account_id :{type : String},
+        platform_id : {type : String},
+        app_id :{type : String},
         dt : Number,
         price : Number,
 });
@@ -47,9 +47,9 @@ function dbTaskWithParameters (accountid,pid,appid,datetime,settingPrice) {
 
 // 爬虫数据
 var showdataSchema  = new mongoose.Schema({
-        acount_id : Number,
-        platform_id : Number,
-        app_id : Number,
+        acount_id : {type : String},
+        platform_id : {type : String},
+        app_id : {type : String},
         dt : Number,
         price : Number,
         hourUse : Number,
@@ -72,9 +72,9 @@ function dbShowdataWithParameters (accountid,pid,appid,datetime,settingPrice,hou
 
 // 爬虫任务表 spider task
 var spidertaskSchema  = new mongoose.Schema({
-        acount_id : Number,
-        platform_id : Number,
-        uid : Number
+        acount_id : {type : String},
+        platform_id : {type : String},
+        uid : {type : String},
 });
 
 var spidertaskModel = db.model('spiderTask',spidertaskSchema);
@@ -93,7 +93,7 @@ function dbSpiderTaskWithParameters (accountid,pid,userid) {
 
 var platformSchema =  new mongoose.Schema({
         platform_name : {type : String},
-        platform_id : Number
+        platform_id : {type : String},
 });
 
 var platformModel = db.model('Platform',platformSchema);
@@ -111,7 +111,7 @@ function dbPlatformWithParameters (name,id) {
 var accountSchema =  new mongoose.Schema({
         acount_username : {type : String},
         account_password : {type : String},
-        account_id : Number
+        account_id : {type : String},
 });
 
 var accountModel = db.model('Account',accountSchema);
@@ -120,7 +120,7 @@ function dbAccountWithParameters (name,pwd,id) {
       var account = new accountModel({
            acount_username : name,
            account_password : pwd,
-           account_id : Number
+           account_id : {type : String},
       });
       return account;
 }
@@ -129,7 +129,7 @@ function dbAccountWithParameters (name,pwd,id) {
 
 var appSchema = new mongoose.Schema({
         app_name : {type : String},
-        app_id : Number
+        app_id : {type : String},
 });
 
 var appModel = db.model('App',appSchema);
@@ -146,10 +146,10 @@ function dbAppWithParameters (name,id) {
 // 关系表
 
 var user_platform_account_appSchema = new mongoose.Schema({
-        uid : Number,
-        platform_id : Number,
-        account_id : Number,
-        app_id : Number
+        uid : {type : String},
+        platform_id : {type : String},
+        account_id : {type : String},
+        app_id : {type : String},
 });
 
 var user_platform_account_appModel = db.model('User_platform_account_app',user_platform_account_appSchema);
@@ -234,6 +234,9 @@ dbmanager.insertUser_platform_account_app = function (userid,pid,accountid,appid
 };
 
 
+dbmanager.createid  = function() {
+   return mongoose.Types.ObjectId().toString();
+};
 
 // dbmanager.dbUserWithParameters = function (name,pwd,userId) {
 //       var user = new userModel({

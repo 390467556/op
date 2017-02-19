@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db/dbmanager')
+var db = require('../db/dbmanager');
+db.connect();
 
 // 获取注册页面
 router.get('/', (req, res) => {
@@ -9,26 +10,34 @@ router.get('/', (req, res) => {
 
 // 校验注册合法,用户名重复
 router.post('/', (req, res) => {
-    var username = req.body.data.username
+  console.log(req.body);
+    var username = req.body.username;
     db.findUsers({ "username": username}, (err, users) => {
+        console.log("db did select");
         if (err) {
-            console.log("Failed to findUser, username is ", username)
-            res.render('register', {warn: "网络忙，请重试"})
+            console.log("Failed to findUser, username is ", username);
+            res.render('register', {warn: "网络忙，请重试"});
+            return;
         }
         if (users.length === 0) {
             // userid
-            var userid
-            db.insertUser(username, req.body.data.password, userid, (err, user) => {
+            var userid = db.createid();
+            console.log(userid);
+            db.insertUser(username, req.body.password, userid, (err, user) => {
                 if (err) {
-                    console.log("Failed to insert user, username is ", username)
-                    res.render('register', {warn: "网络忙，请重试"})
+                    console.log("Failed to insert user, username is " + username + "\nerror is :" + err);
+                    res.render('register', {warn: "网络忙，请重试"});
+                } else {
+                    res.render('config');
+
                 }
-                res.render('config')
             })
+        } else {
+            res.render('register', {warn: "重复用户"});
         }
 
-        res.render('register', {warn: "用户重复"})
-    })
+    });
+
 })
 
 module.exports = router;
