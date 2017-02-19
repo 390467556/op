@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-18 13:53:07 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-18 14:19:29
+ * @Last Modified time: 2017-02-19 17:22:27
  * @Simple Description:  Javascript file for register page
  */
 
@@ -37,14 +37,17 @@ require(['jquery'], function($) {
 
         // TODO: 提示框或者直接alert?
         if (isEmpty($userName)) {
+            alert('用户名不能为空')                        
             return
         }
 
         if (isEmpty($pwd)) {
+            alert('密码不能为空')                        
             return
         }
 
         if (isEmpty($pwdCheck)) {
+            alert('请重新输入密码')            
             return
         }
         
@@ -53,6 +56,6 @@ require(['jquery'], function($) {
             return
         }
         
-        $realSubmit.submit()
+        $realSubmit.click()
     })
 })

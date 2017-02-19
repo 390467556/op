@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-18 14:28:56 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-18 14:36:52
+ * @Last Modified time: 2017-02-19 17:22:46
  * @Simple Description:  Javascript file for login page
  */
 
@@ -31,13 +31,15 @@ require(['jquery'], function($) {
 
         // TODO: 提示框或者直接alert?
         if (isEmpty($userName)) {
+            alert('用户名不能为空')
             return
         }
 
         if (isEmpty($pwd)) {
+            alert('密码不能为空')            
             return
         }
         
-        $realSubmit.submit()
+        $realSubmit.click()
     })
 })
