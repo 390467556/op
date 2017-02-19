@@ -1,8 +1,9 @@
 extends layout
 
 block scripts
-    script(src="/public/javascripts/register.js")
-    script alert(#{warn})
+    script(src="/javascripts/register.js")
+    if warn
+        script alert(#{warn})
 
 block content
     div.content
