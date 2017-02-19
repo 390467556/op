@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
              console.log(users);
-              res.render('form', formData());
+              res.render('forms', formData());
            }
          });
        }
