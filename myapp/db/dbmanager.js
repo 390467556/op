@@ -247,7 +247,7 @@ dbmanager.createid  = function() {
 
 // 爬虫数据便利插入方法
 
-dbmanager.insertSpiderData = function (username,platformname,) {
+dbmanager.insertSpiderData = function (username,platformname) {
 
 
 };
@@ -256,7 +256,7 @@ dbmanager.saveTask = function(platformName,accountName,accountPassword,appName,d
 
      var pid = this.createid();
      var accountid = this.createid();
-     vat appid = this.createid();
+     var appid = this.createid();
      this.insertTask(accountid,pid,appid,dt,price,handler);
      this.insertPlatform(platformName,pid,handler);
      this.insertAccout(accountName,accountPassword,accountid,handler);

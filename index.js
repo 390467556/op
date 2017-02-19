@@ -6,6 +6,7 @@ var tesseract = require('node-tesseract');
 var gm = require('gm');
 var config = require('./config');
 var captcha = require('./lib/captcha');
+var fileConfig = require('./lib/fileConfig');
 
 console.log(config.filesForCommunication);
 
@@ -13,33 +14,42 @@ console.log(config.filesForCommunication);
 process.chdir('lib');
 
 var count = 0;
+var arg;
 
 function isLogin() {
     return fs.existsSync('result.txt') && fs.readFileSync('result.txt').toString() === "success";
 }
 
-function login() {
+exports.login = function(arg1, arg2) {
     deleteAll();
     //执行登录
-    var action = 2;
-    var ls = spawn('casperjs', ['login.js', action]);
+    // fs.touch
+    arg = arg2;
+    var dir = './' + arg;
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, 0777);
+    }
+
+    var ls = spawn('casperjs', ['login.js', arg2]);
     ls.on('close', function(code) {
         if (code == 1) {
-            console.log('child process结束。目标：' + action);
+            console.log('child process结束。目标：' + arg2 === 1 ? "预设置脚本" : "爬虫脚本");
+            this.bypass(2);
         }
     });
 
-    ls.stdout.on('data', function (data) {
-     console.log('stdout: ' + data);
-   });
+    ls.stdout.on('data', function(data) {
+        console.log('stdout: ' + data);
+    });
 
-   ls.stderr.on('data', function (data) {
-     console.log('stderr: ' + data);
-   });
+    ls.stderr.on('data', function(data) {
+        console.log('stderr: ' + data);
+    });
 
-   ls.on('exit', function (code) {
-     console.log('child process exited with code ' + code);
-   });
+    ls.on('exit', function(code) {
+        console.log('child process exited with code ' + code);
+        this.bypass(2);
+    });
 
     // exec('casperjs login.js', function(error, stdout, stderr) {
     //     console.log("ERROR : " + error);
@@ -68,14 +78,14 @@ function login() {
     // });
 
     identifyCode();
-}
+};
 
 function identifyCode() {
     //等待获取到验证码图片
-    while (!fs.existsSync("checkCode.jpg")) {
+    while (!fs.existsSync("./" + arg + "/checkCode.jpg")) {
 
     }
-    captcha.identifyCode();
+    captcha.identifyCode(arg);
 }
 
 function deleteAll() {
@@ -86,6 +96,3 @@ function deleteAll() {
         }
     }
 }
-
-
-login();

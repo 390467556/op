@@ -1,11 +1,8 @@
-var later = require('later');
 var cron = require('node-schedule');
 var index = require('./index');
   // var arg = process.argv[2];
 
 exports.schedule = function(arg){
-  // //设置本地时区
-  later.date.localTime();
 
   console.log("参数:" + arg);
   if (arg === "" || arg === undefined){
