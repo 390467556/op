@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var users = require('./routes/users');
-var login = require('./routes/login');
-var register = require('./routes/register');
-var config = require('./routes/config');
+var login = require('./routes/loginRoute');
+var register = require('./routes/registerRoute');
+var config = require('./routes/configRoute');
 
 var db = require('./db/dbmanager');
 db.connect(); 

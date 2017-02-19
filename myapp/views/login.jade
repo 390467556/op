@@ -2,6 +2,8 @@ extends layout
 
 block scripts
     script(src="/javascripts/login.js")
+    if warn
+        script alert("#{warn}")
 
 block content
     div.content
@@ -12,6 +14,6 @@ block content
         form(action="/login", method="post")
             input#userName(type="text", placeholder= "用户名", name="username")
             input#pwd(type="password", placeholder= "密码", name="pwd")
-            input.button#loginSubmit(type="submit", value="登录")
+            input.button.hidden#loginSubmit(type="submit", value="登录")
         a#submit(href="javascript:void(0)") 登录
         a(href="/register") 注册

@@ -28,11 +28,13 @@ router.post('/', (req, res) => {
                     console.log("Failed to insert user, username is " + username + "\nerror is :" + err);
                     res.render('register', {warn: "网络忙，请重试"});
                 } else {
+                    console.log('render config')
                     res.render('config');
 
                 }
             })
         } else {
+            console.log('render register')
             res.render('register', {warn: "重复用户"});
         }
 

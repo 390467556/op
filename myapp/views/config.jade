@@ -3,14 +3,8 @@ extends layout
 block scripts 
     script(src="/public/javascripts/lib/moment.js")    
     script(src="/public/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
-    <script>
-		$(function () {
-			$(".menu li").click(function(){
-				$(this).addClass("border").siblings().removeClass("border");
-			});
-			$( ".date" ).datepicker();
-		});
-	</script>
+    script $(function () {$(".menu li").click(function(){$(this).addClass("border").siblings().removeClass("border");});$( ".date" ).datepicker();});
+	
 
 block stylesheets
     link(href="/public/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")

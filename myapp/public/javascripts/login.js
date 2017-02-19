@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-18 14:28:56 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-19 17:22:46
+ * @Last Modified time: 2017-02-19 22:07:17
  * @Simple Description:  Javascript file for login page
  */
 
@@ -43,3 +43,4 @@ require(['jquery'], function($) {
         $realSubmit.click()
     })
 })
+

@@ -3,11 +3,30 @@ extends layout
 block scripts 
     //- script(src="/javascripts/lib/moment.js")    
     script(src="/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
-    script(src="/javascripts/forms.js")        
+    script(src="/javascripts/lib/moment.js")
+    script(src="/javascripts/forms.js")
+    script require(['formsGen'], function(f) {f(n, form)})       
 
 block stylesheets
     link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
     link(href="/stylesheets/forms.css", rel="stylesheet")    
+
+//- 为每个表单建立的可复用模板
+mixin form(days, forms, type, visable)
+    div.table(class=visable, "data-app"=forms["app_name"])
+        table(style="margin-top: 20px")
+        - var moment = require('moment')
+        //- 表头
+        tr
+            td
+            while days >= 0
+                td= moment().substract(--days, 'days').calendar() 
+        //- 边栏和表单内容
+        - for (var i = 0; i < 23; i++)
+            tr
+                td= i
+                - for (var j = 0; j < 3; j++)
+                    td= data["units"][j][type]
 
 block content
     div.content
@@ -37,28 +56,9 @@ block content
             
             select.selectTwo
                 option(value="") 全部应用
-                each app in apps
-                    option(value="")= app
-
-//- 为每个表单建立的可复用模板
-mixin form(days, form, type, visable)
-    div.table("data-app"=form["app_name"], class=visable)
-        table(style="margin-top: 20px")
-        - var moment = require('moment')
-        //- 表头
-        tr
-            td
-            while days >= 0
-                td= moment().substract(--days, 'days').calendar() 
-        //- 边栏和表单内容
-        - for (var 0 = 0; i < 23; i++)
-            tr
-                td= n
-                - for (var j = 0; j < 3; j++)
-                    td= form["units"][j][type]
-
-        +form(n, form, "ctr", "active")
-        +form(n, form, "hourUse", "hidden")
-        +form(n, form, "price", "hidden")
+                if apps
+                    each app in apps
+                        option(value="")= app
+           
 </body>
 </html>

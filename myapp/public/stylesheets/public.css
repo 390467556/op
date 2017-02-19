@@ -80,3 +80,10 @@
 			font-family: "Times New Roman",Georgia,Serif;
 			opacity: 0.5;
 		}
+
+		.hidden {
+			display: none;
+		}
+		.active {
+			display: block;
+		}

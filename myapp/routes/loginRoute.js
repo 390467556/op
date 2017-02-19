@@ -21,8 +21,7 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-             console.log(users);
-              res.render('forms', formData());
+             res.render('forms', {n: 3, forms: {"app_name": 'test'}, units: []});
            }
          });
        }
@@ -32,8 +31,8 @@ router.post('/', (req, res) => {
 
 function formData() {
    var data = {
-      "days" : 3,
-      "form" : {}
+      "n" : 3,
+      "forms" : {app_name: 'test'}
    };
    return data;
 }
