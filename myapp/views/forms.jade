@@ -29,11 +29,11 @@ block content
             
             input.date(type="date", style="border:1px solid #ddd;")
             span
-                input(type="radio", name="last30") 过去30天
+                input(type="radio", name="days", value="过去30天") 
             span
-                input(type="radio", name="last7") 过去7天
+                input(type="radio", name="days", value="过去7天")
             span
-                input(type="radio" name="today") 今日
+                input(type="radio" name="days", value="今日")
             
             select.selectTwo
                 option(value="") 全部应用
