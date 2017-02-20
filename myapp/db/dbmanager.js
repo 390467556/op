@@ -31,16 +31,20 @@ var taskSchema  = new mongoose.Schema({
         app_id :{type : String},
         dt : Number,
         price : Number,
+        task_id:{type : String},
 });
 var taskModel = db.model('Task',taskSchema);
 
 function dbTaskWithParameters (accountid,pid,appid,datetime,settingPrice) {
+
+      var task_id = this.createid();
       var task = new taskModel({
         account_id : accountid,
         platform_id : pid,
         app_id : appid,
         dt : datetime,
         price : settingPrice,
+        task_id : task_id
       });
       return task;
 }
@@ -164,6 +168,26 @@ function dbUser_platform_account_appWithParameters (userid,pid,accountid,appid) 
       return user_platform_account_app;
 }
 
+var user_platform_accountSchema = new mongoose.Schema({
+        uid : {type : String},
+        platform_id : {type : String},
+        account_id : {type : String},
+});
+
+var user_platform_accountModel = db.model('User_platform_account',user_platform_accountSchema);
+
+function dbUser_platform_account_WithParameters (userid,pid,accountid) {
+      var user_platform_account = new user_platform_account_appModel({
+          uid : userid,
+          platform_id : pid,
+          account_id : accountid
+      });
+      return user_platform_account;
+}
+
+
+
+
 //数据库连接
 dbmanager.connect = function(){
   mongoose.connect('mongodb://localhost/test');
@@ -187,12 +211,12 @@ dbmanager.findUsers = function (filter,handler) {
 
 
 // 插入 task 数据
-dbmanager.insertTask = function (accountid,pid,appid,datetime,settingPrice,handler) {
+dbmanager.insertTask = function (pid,accountid,appid,datetime,settingPrice,handler) {
      var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice);
      task.save(handler);
 };
 
-// 插入展示数据
+// 插入爬虫展示数据
 // accountid 用户平台账户 id
 // pid 平台用户 id
 // datetime 爬取数据的时间
@@ -235,9 +259,15 @@ dbmanager.insertAccout = function (name,pwd,id,handler) {
 
 // 插入关系表
 dbmanager.insertUser_platform_account_app = function (userid,pid,accountid,appid,handler) {
-     var user_platform_account_app = dbUser_platform_account_appWithParameters(name,pwd,id,handler);
+     var user_platform_account_app = dbUser_platform_account_appWithParameters(userid,pid,accountid,appid);
      user_platform_account_app.save(handler);
 };
+
+dbmanager.insertUser_platform_account = function (userid,pid,accountid,handler) {
+     var user_platform_account = dbUser_platform_account_appWithParameters(userid,pid,accountid);
+     user_platform_account.save(handler);
+};
+
 
 
 dbmanager.createid  = function() {
@@ -261,6 +291,25 @@ dbmanager.saveTask = function(platformName,accountName,accountPassword,appName,d
      this.insertPlatform(platformName,pid,handler);
      this.insertAccout(accountName,accountPassword,accountid,handler);
      this.insertApp(appName,appid,handler);
+};
+
+
+
+dbmanager.findPlatformAccountsWithUsername = function(username,handler) {
+    if (!username) {
+        handler("error","username is null");
+    } else {
+       user_platform_accountModel.find({"username" : username },handler);
+    }
+};
+
+dbmanager.findTaskWithId = function(taskid){
+
+  if (!taskid) {
+      handler("error","taskid is null");
+  } else {
+     taskModel.find({"task_id" : taskid },handler);
+  }
 };
 
 // dbmanager.dbUserWithParameters = function (name,pwd,userId) {
