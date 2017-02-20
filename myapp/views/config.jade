@@ -1,25 +1,27 @@
 extends layout
 
 block scripts 
-    script(src="/public/javascripts/lib/moment.js")    
-    script(src="/public/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
-    script $(function () {$(".menu li").click(function(){$(this).addClass("border").siblings().removeClass("border");});$( ".date" ).datepicker();});
+    script(src="/javascripts/lib/moment.js")    
+    script(src="/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
+    script(src="/javascripts/config.js")    
 
 block stylesheets
-    link(href="/public/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
-    link(href="/public/stylesheets/forms.css", rel="stylesheet")    
+    link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
+    link(href="/stylesheets/config.css", rel="stylesheet")    
 
 block content
     div.content
         h3 效果报表
         div.menu
             ul
-                a(href="/setting")
+                a.link(href="/setting")
                     li.border 设置页面
-                a(href="/forms")
-                    li.border 报表页面
-            
-            input.date(type="date", style="border:1px solid #ddd;")
+                a.link(href="/forms")
+                    li 报表页面
+            input.end(type="text", name="end", style="border:1px solid #ddd;")
+            span to
+            input.start(type="text", style="border:1px solid #ddd;", name="start")
+
             span 
                 input(type="radio", name="time", value="30")
                 | 过去30天
@@ -30,20 +32,21 @@ block content
                 input(type="radio", name="time", value="3")
                 | 今天
             
-            select.selectOne.special
-                option 小时消耗表
-                option ctr表
-                option 单价
-
-        .table
-            table(style="margin-top: 20px")
-            tr
-            td.first 全天预设出价
-            - for (var i = 0; i < 24; i++)
-                td= i
-            tr
-                td.firstt 单价
-                - for (var i = 0; i < 24; i++)
-                    td= i
+            select.select
+                option 全部应用
+                option 来疯直播
+            
+        div.table
+            form
+                table(style="margin-top: 20px")
+                    tr
+                        td.first 全天预设出价
+                        - for (var i = 0; i < 24; i++)
+                            td #{i}
+                    tr
+                        td.firstt 单价
+                        - for (var i = 0; i < 24; i++)
+                            td
+                                input(type="number")
 
 
