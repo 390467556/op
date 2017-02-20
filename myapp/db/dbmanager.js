@@ -35,16 +35,15 @@ var taskSchema  = new mongoose.Schema({
 });
 var taskModel = db.model('Task',taskSchema);
 
-function dbTaskWithParameters (accountid,pid,appid,datetime,settingPrice) {
+function dbTaskWithParameters (accountid,pid,appid,datetime,settingPrice,taskid) {
 
-      var task_id = this.createid();
       var task = new taskModel({
         account_id : accountid,
         platform_id : pid,
         app_id : appid,
         dt : datetime,
         price : settingPrice,
-        task_id : task_id
+        task_id : taskid
       });
       return task;
 }
@@ -212,7 +211,8 @@ dbmanager.findUsers = function (filter,handler) {
 
 // 插入 task 数据
 dbmanager.insertTask = function (pid,accountid,appid,datetime,settingPrice,handler) {
-     var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice);
+     var task_id = this.createid();
+     var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice,task_id);
      task.save(handler);
 };
 
@@ -253,8 +253,8 @@ dbmanager.insertApp = function (name,id,handler) {
 
 // 插入用户广告平台账号数据
 dbmanager.insertAccout = function (name,pwd,id,handler) {
-     var account = dbAccountWithParameters(name,pwd,id,handler);
-     account.save(handle,handler);
+     var account = dbAccountWithParameters(name,pwd,id);
+     account.save(handler);
 };
 
 // 插入关系表
@@ -303,7 +303,7 @@ dbmanager.findPlatformAccountsWithUsername = function(username,handler) {
     }
 };
 
-dbmanager.findTaskWithId = function(taskid){
+dbmanager.findTaskWithId = function(taskid,handler){
 
   if (!taskid) {
       handler("error","taskid is null");
