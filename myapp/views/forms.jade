@@ -25,19 +25,19 @@ block content
             div 下载报表
 
             select.selectOne.special
-                option 小时消耗表
-                option ctr表
-                option 单价
+                option(value="hourUse", selected=true) 小时消耗表
+                option(value="ctr") ctr表
+                option(value="price") 单价
             
             input.date(style="border:1px solid #ddd;")
             span 
-                input(type="radio", name="days", value="30")
+                input.days(type="radio", name="days", value="30")
                 |过去30天
             span 
-                input(type="radio", name="days", value="7")
+                input.days(type="radio", name="days", value="7")
                 |过去7天                
             span 
-                input(type="radio" name="days", value="3")
+                input.days(type="radio" name="days", value="3", selected=true)
                 |今天
             
             select.selectTwo
