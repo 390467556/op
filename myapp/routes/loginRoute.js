@@ -5,7 +5,9 @@ var db = require('../db/dbmanager');
 
 // get用于获取登录页面
 router.get('/', (req, res) => {
-    res.render('login')
+    res.send('ok')
+    // res.render('login', {warn: 'test'})
+    // res.render('login', {title: 'test'})
 })
 
 // post用于登录
@@ -21,13 +23,13 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-<<<<<<< HEAD:myapp/routes/loginRoute.js
-             res.render('forms', {n: 3, forms: {"app_name": 'test'}, units: []});
-=======
-             console.log(users);
-               res.render('forms', formData());
-              // res.send("<center><h1>登录成功<h1></center>");
->>>>>>> 8abbbd42355a54edd6515e403373651082a2ec64:myapp/routes/login.js
+               res.render('forms', {showData: 'test', n: 2}, (err, html) => {
+                 if (err) {
+                   console.log(err)
+                   return
+                 }
+                    console.log(html)
+               });
            }
          });
        }
@@ -36,15 +38,24 @@ router.post('/', (req, res) => {
 });
 
 function formData() {
-   var data = {
-      "n" : 3,
-<<<<<<< HEAD:myapp/routes/loginRoute.js
-      "forms" : {app_name: 'test'}
-=======
-      "form" : {}
->>>>>>> 8abbbd42355a54edd6515e403373651082a2ec64:myapp/routes/login.js
-   };
-   return data;
+   return {
+    "showData": {
+        "units": [
+          {"time" : 2016010101,
+            "price":2,
+            "hourUse":4,
+            "ctr":5
+          },
+          {"time" : 2016010102,
+            "price":5,
+            "hourUse":1,
+            "ctr":8
+          }
+        ],
+      "appName": "laifeng"
+    },
+  "n": 3
+  }
 }
 
 

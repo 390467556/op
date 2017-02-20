@@ -1,32 +1,14 @@
 extends layout
 
 block scripts 
-    //- script(src="/javascripts/lib/moment.js")    
     script(src="/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
-    script(src="/javascripts/lib/moment.js")
+    script(src="/javascripts/lib/moment.js")  
     script(src="/javascripts/forms.js")
-    script require(['formsGen'], function(f) {f(n, form)})       
-
+    script window.n=#{n}; window.showData="#{showData}"
+    
 block stylesheets
     link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
     link(href="/stylesheets/forms.css", rel="stylesheet")    
-
-//- 为每个表单建立的可复用模板
-mixin form(days, forms, type, visable)
-    div.table(class=visable, "data-app"=forms["app_name"])
-        table(style="margin-top: 20px")
-        - var moment = require('moment')
-        //- 表头
-        tr
-            td
-            while days >= 0
-                td= moment().substract(--days, 'days').calendar() 
-        //- 边栏和表单内容
-        - for (var i = 0; i < 23; i++)
-            tr
-                td= i
-                - for (var j = 0; j < 3; j++)
-                    td= data["units"][j][type]
 
 block content
     div.content
@@ -35,9 +17,9 @@ block content
             
             ul
                 li
-                    a(href="/config") 前往设置页面
+                    a(href="/config") 设置页面
                 li.border
-                    a(href="javascript: void(0)") 前往报表页面
+                    a(href="javascript: void(0)") 报表页面
             
             div 下载报表
 
@@ -47,18 +29,16 @@ block content
                 option 单价
             
             input.date(type="date", style="border:1px solid #ddd;")
-            span
-                input(type="radio", name="days", value="过去30天") 
-            span
-                input(type="radio", name="days", value="过去7天")
-            span
-                input(type="radio" name="days", value="今日")
+            span 过去30天
+                input(type="radio", name="days", value="30") 
+            span 过去7天
+                input(type="radio", name="days", value="7")
+            span 今天
+                input(type="radio" name="days", value="3")
             
             select.selectTwo
                 option(value="") 全部应用
                 if apps
                     each app in apps
                         option(value="")= app
-           
-</body>
-</html>
+            

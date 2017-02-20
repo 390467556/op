@@ -2,13 +2,14 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-19 23:40:45
+ * @Last Modified time: 2017-02-20 01:02:31
  * @Simple Description:  Javascript for forms page
  */
 
-
-define('formsGen', ['jquery', 'moment'], function($, moment) {
+$(function() {
     'use strict';
+    var moment = window.moment
+
     $(function () { 
         $(".menu li").click(function(){
 			$(this).addClass("border").siblings().removeClass("border");
@@ -59,7 +60,11 @@ define('formsGen', ['jquery', 'moment'], function($, moment) {
     function formsGenerator(n, forms) {
         var ctr = new Form(n, forms, 'active'),
             hourPrice = new Form(n, forms, 'hidden'),
-            price = new Form(n, forms, 'hidden')           
+            price = new Form(n, forms, 'hidden')     
+        ctr.createTable()
+        hourPrice.createTable()
+        price.createTable()      
     }
+    window.fg = formsGenerator
 })
 

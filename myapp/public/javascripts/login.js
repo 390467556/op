@@ -2,11 +2,12 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-18 14:28:56 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-19 22:07:17
+ * @Last Modified time: 2017-02-20 00:12:24
  * @Simple Description:  Javascript file for login page
  */
 
-require(['jquery'], function($) {
+
+$(function(){
     // 提交表单之前进行必要校验
     /**
      * 1. 用户名非空

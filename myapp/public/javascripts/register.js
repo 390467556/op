@@ -2,12 +2,12 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-18 13:53:07 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-19 17:22:27
+ * @Last Modified time: 2017-02-20 00:12:03
  * @Simple Description:  Javascript file for register page
  */
 
 
-require(['jquery'], function($) {
+$(function(){
     'use strict';
 
     // 提交表单之前进行必要校验
