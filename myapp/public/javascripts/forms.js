@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-20 09:08:40
+ * @Last Modified time: 2017-02-20 09:58:32
  * @Simple Description:  Javascript for forms page
  */
 
@@ -17,11 +17,12 @@ $(function() {
 		$( ".date" ).datepicker();
     });
 
-    var Form = function(n, formData, className) {
+    var Form = function(n, formData, className, type) {
         this.days = n
         this.data = formData
         this.className = className
         this.app = formData['appName']
+        this.type = type
     }
 
     Form.prototype = {
@@ -53,7 +54,7 @@ $(function() {
             var headStr = this.formatHeader(),
                 dataStr = this.formatData()
             var tableStr = headStr + dataStr
-            var tmp = ['<div class=', this.className, ' data-app=', this.app, '><table style="margin-top: 20px">'].join('')
+            var tmp = ['<div class="table ', this.className, '" data-app=', this.app, '><table style="margin-top: 20px">'].join('')
             tableStr = tmp + tableStr + '</table></div>'
             $('.menu').after(tableStr)
         }
@@ -61,13 +62,15 @@ $(function() {
 
     function formsGenerator(data) {
         var n = data['n'], forms = data['showData']
-        var ctr = new Form(n, forms, 'active'),
-            hourPrice = new Form(n, forms, 'hidden'),
-            price = new Form(n, forms, 'hidden')     
+        var ctr = new Form(n, forms, 'hidden', 'price'),
+            hourPrice = new Form(n, forms, 'active', 'hourUse'),
+            price = new Form(n, forms, 'hidden', 'ctr')     
         ctr.createTable()
         hourPrice.createTable()
         price.createTable()      
     }
     formsGenerator(window.opdata)
+
+    
 })
 

@@ -21,76 +21,31 @@ block content
                     li.border 报表页面
             
             input.date(type="date", style="border:1px solid #ddd;")
-            span
-                input(type="radio" name="time")
-    <div class="content">
-		<div class="menu">
-			<div>下载报表</div>
-			<input type="date" class="date" style="border:1px solid #ddd;">
-			<span><input type="radio" name="time">过去30天</span>
-			<span><input type="radio" name="time">过去7天</span>
-			<span><input type="radio" name="time">今日</span>
-			<select class="select" >
-				<option value="">全部应用</option>
-				<option value="">来疯直播</option>
-			</select>
-		</div>
-		<div class="table">
-			<table style="margin-top: 20px">
-		        <tr>
-				    <td class="first">全天预设初价</td>
-				    <td>0</td>
-				    <td>1</td>
-				    <td>2</td>
-				    <td>3</td>
-				    <td>4</td>
-				    <td>5</td>
-				    <td>6</td>
-				    <td>7</td>
-				    <td>8</td>
-				    <td>9</td>
-				    <td>10</td>
-				    <td>11</td>
-				    <td>12</td>
-				    <td>13</td>
-				    <td>14</td>
-				    <td>15</td>
-				    <td>16</td>
-				    <td>17</td>
-				    <td>18</td>
-				    <td>19</td>
-				    <td>20</td>
-				    <td>21</td>
-				    <td>22</td>
-				    <td>23</td>
-			</tr>
-			<tr>
-				    <td class="first">单价</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-			</tr>
-		</div>
-	</div>
+            span 
+                input(type="radio", name="time", value="30")
+                | 过去30天
+			span 
+                input(type="radio", name="time", value="7")
+                | 过去7天
+			span 
+                input(type="radio", name="time", value="3")
+                | 今天
+			
+			select.selectOne.special
+                option 小时消耗表
+                option ctr表
+                option 单价
+			
+		.table
+			table(style="margin-top: 20px")
+			tr
+				td.first 全天预设出价
+				- for (var i = 0; i < 24; i++)
+					td= i
+			
+			tr
+				td.firstt 单价
+				- for (var i = 0; i < 24; i++)
+					td= i
+
 

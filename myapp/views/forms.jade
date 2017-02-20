@@ -29,13 +29,16 @@ block content
                 option ctr表
                 option 单价
             
-            input.date(type="date", style="border:1px solid #ddd;")
+            input.date(style="border:1px solid #ddd;")
             span 
-                input(type="radio", name="days", value="30") 
+                input(type="radio", name="days", value="30")
+                |过去30天
             span 
                 input(type="radio", name="days", value="7")
+                |过去7天                
             span 
                 input(type="radio" name="days", value="3")
+                |今天
             
             select.selectTwo
                 option(value="") 全部应用

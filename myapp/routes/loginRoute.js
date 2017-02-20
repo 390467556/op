@@ -30,21 +30,26 @@ router.post('/', (req, res) => {
 
 });
 
+
 function formData() {
-   return {
-    "showData": {
-        "units": [
-          {"time" : 2016010101,
+  var tmparr = []
+  for (var i = 0; i < 24; i++)
+    tmparr.push([{"time" : 2016010101,
             "price":2,
             "hourUse":4,
             "ctr":5
-          },
-          {"time" : 2016010102,
-            "price":5,
-            "hourUse":1,
-            "ctr":8
-          }
-        ],
+          },{"time" : 2016010101,
+            "price":2,
+            "hourUse":4,
+            "ctr":5
+          },{"time" : 2016010101,
+            "price":2,
+            "hourUse":4,
+            "ctr":5
+          }])
+   return {
+    "showData": {
+        "units": tmparr,
       "appName": "laifeng"
     },
   "n": 3
