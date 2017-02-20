@@ -9,6 +9,7 @@ var users = require('./routes/users');
 var login = require('./routes/loginRoute');
 var register = require('./routes/registerRoute');
 var config = require('./routes/configRoute');
+var forms = require('./routes/forms');
 
 var db = require('./db/dbmanager');
 db.connect();
@@ -31,6 +32,8 @@ app.use('/', login);
 // app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
+app.use('/config',config);
+app.use('/forms',forms);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
