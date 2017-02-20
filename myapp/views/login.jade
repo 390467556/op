@@ -1,5 +1,8 @@
 extends layout
 
+block stylesheets
+    link(href="/stylesheets/public.css", rel="stylesheet")    
+
 block scripts
     script(src="/javascripts/login.js")
     if warn 
