@@ -4,7 +4,6 @@ block scripts
     script(src="/public/javascripts/lib/moment.js")    
     script(src="/public/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
     script $(function () {$(".menu li").click(function(){$(this).addClass("border").siblings().removeClass("border");});$( ".date" ).datepicker();});
-	
 
 block stylesheets
     link(href="/public/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
@@ -24,28 +23,27 @@ block content
             span 
                 input(type="radio", name="time", value="30")
                 | 过去30天
-			span 
+            span 
                 input(type="radio", name="time", value="7")
                 | 过去7天
-			span 
+            span 
                 input(type="radio", name="time", value="3")
                 | 今天
-			
-			select.selectOne.special
+            
+            select.selectOne.special
                 option 小时消耗表
                 option ctr表
                 option 单价
-			
-		.table
-			table(style="margin-top: 20px")
-			tr
-				td.first 全天预设出价
-				- for (var i = 0; i < 24; i++)
-					td= i
-			
-			tr
-				td.firstt 单价
-				- for (var i = 0; i < 24; i++)
-					td= i
+
+        .table
+            table(style="margin-top: 20px")
+            tr
+            td.first 全天预设出价
+            - for (var i = 0; i < 24; i++)
+                td= i
+            tr
+                td.firstt 单价
+                - for (var i = 0; i < 24; i++)
+                    td= i
 
 
