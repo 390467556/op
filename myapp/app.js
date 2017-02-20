@@ -11,7 +11,7 @@ var register = require('./routes/registerRoute');
 var config = require('./routes/configRoute');
 
 var db = require('./db/dbmanager');
-db.connect(); 
+db.connect();
 
 var app = express();
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', login);
+app.use('/', login);
 // app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
