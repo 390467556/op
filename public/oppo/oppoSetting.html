@@ -11,7 +11,24 @@
 			$(".menu li").click(function(){
 				$(this).addClass("border").siblings().removeClass("border");
 			});
-			$( ".date" ).datepicker();
+			/*  日期选择器
+			$( ".start" ).datepicker({
+             defaultDate: "+1w",
+             changeMonth: true,
+             numberOfMonths: 2,
+             onClose: function( selectedDate ) {
+            $( ".end" ).datepicker( "option", "minDate", selectedDate );
+            }
+           });
+           $( ".end" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+           $( ".start" ).datepicker( "option", "maxDate", selectedDate );
+           }
+          });
+          */
 		});
 	</script>
 	<style>
@@ -58,7 +75,7 @@
 			color:#777;
 			margin-top:15px;
 		}
-		.menu span,.date,select {
+		.menu span,.start,.end,.select {
 			float: right;
 			height: 35px;
 			margin-top:15px;
@@ -83,12 +100,18 @@
 			line-height: 25px;
 			text-align: center;
 		}
+		.table input {
+			border: none;
+			outline: none;
+		}
 		td.first {
 			width: 35px;
 		}
-		a {
+		.link {
 			text-decoration: none;
 			color: #777;
+			width: 200px;
+			height: 60px;
 			float: left;
 		}
 	</style>
@@ -98,11 +121,12 @@
 	    <h3>效果报表</h3>
 		<div class="menu">
 			<ul>
-				<a href="./oppoSetting.html"><li class="border">设置页面</li></a>
-				<a href="./oppoForms.html"><li>报表页面</li></a>
+				<a href="./oppoSetting.html" class="link"><li class="border">设置页面</li></a>
+				<a href="./oppoForms.html" class="link"><li>报表页面</li></a>
 			</ul>
 			<div>下载报表</div>
-			<input type="date" class="date" style="border:1px solid #ddd;">
+			<!-- <input type="text" class="end" name="end" style="border:1px solid #ddd;"><span>to</span> -->
+			<!-- <input type="text" class="start" name="start" style="border:1px solid #ddd;"> -->
 			<span><input type="radio" name="time">过去30天</span>
 			<span><input type="radio" name="time">过去7天</span>
 			<span><input type="radio" name="time">今日</span>
@@ -112,6 +136,7 @@
 			</select>
 		</div>
 		<div class="table">
+		   <form>
 			<table style="margin-top: 20px">
 		        <tr>
 				    <td class="first">全天预设初价</td>
@@ -142,31 +167,33 @@
 			</tr>
 			<tr>
 				    <td class="first">单价</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
-				    <td>1</td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
+				    <td><input type="text"></td>
 			</tr>
+			</table>
+			</form>
 		</div>
 	</div>
 </body>
