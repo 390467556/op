@@ -3,8 +3,9 @@ extends layout
 block scripts 
     script(src="/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
     script(src="/javascripts/lib/moment.js")  
+    script window.opdata=!{data};
     script(src="/javascripts/forms.js")
-    script window.n=#{n}; window.showData="#{showData}"
+    
     
 block stylesheets
     link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
@@ -29,11 +30,11 @@ block content
                 option 单价
             
             input.date(type="date", style="border:1px solid #ddd;")
-            span 过去30天
+            span 
                 input(type="radio", name="days", value="30") 
-            span 过去7天
+            span 
                 input(type="radio", name="days", value="7")
-            span 今天
+            span 
                 input(type="radio" name="days", value="3")
             
             select.selectTwo

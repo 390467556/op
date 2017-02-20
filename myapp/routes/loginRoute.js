@@ -5,9 +5,7 @@ var db = require('../db/dbmanager');
 
 // get用于获取登录页面
 router.get('/', (req, res) => {
-    res.send('ok')
-    // res.render('login', {warn: 'test'})
-    // res.render('login', {title: 'test'})
+    res.render('login', {warn: 'test'})
 })
 
 // post用于登录
@@ -23,13 +21,8 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-               res.render('forms', {showData: 'test', n: 2}, (err, html) => {
-                 if (err) {
-                   console.log(err)
-                   return
-                 }
-                    console.log(html)
-               });
+              var data = JSON.stringify(formData())
+               res.render('forms', {data: data});
            }
          });
        }

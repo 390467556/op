@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-20 01:02:31
+ * @Last Modified time: 2017-02-20 09:08:40
  * @Simple Description:  Javascript for forms page
  */
 
@@ -28,9 +28,10 @@ $(function() {
         formatHeader: function() {
             var headerStr = '<tr><td></td>'
             for (var i = this.days - 1; i >= 0; i--) {
-                headerStr += ['<td>', moment().substract(i, 'days').calendar(), '</td>'].join('')
+                headerStr += ['<td>', moment().subtract(i, 'days').calendar(), '</td>'].join('')
             }
             this.header = headerStr + '</tr>'
+            return this.header
         },
 
         formatData: function() {
@@ -45,6 +46,7 @@ $(function() {
                 tmp.push(dataStr)
             }
             this.tableStr = tmp.join('')
+            return this.tableStr
         },
 
         createTable: function() {
@@ -57,7 +59,8 @@ $(function() {
         }
     }
 
-    function formsGenerator(n, forms) {
+    function formsGenerator(data) {
+        var n = data['n'], forms = data['showData']
         var ctr = new Form(n, forms, 'active'),
             hourPrice = new Form(n, forms, 'hidden'),
             price = new Form(n, forms, 'hidden')     
@@ -65,6 +68,6 @@ $(function() {
         hourPrice.createTable()
         price.createTable()      
     }
-    window.fg = formsGenerator
+    formsGenerator(window.opdata)
 })
 
