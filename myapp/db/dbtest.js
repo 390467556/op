@@ -14,7 +14,5 @@ dbmanager.connect();
 // dbmanager.findUsers({"username" : "renguohu"},function (error, users) {
 //     console.log(users);
 // });
-dbmanager.insertTask("1","2","3","4","5",function(error,tasks){
-   console.log(error);
-   console.log(tasks);
-});
+// dbmanager.insertTask(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice);
+dbmanager.insertTask("aaa","oppo","you@tudou.com","121313","laifeng",1243412131,300);

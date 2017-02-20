@@ -1,297 +1,167 @@
+
 var dbmanager = {};
 module.exports = dbmanager;
 
 var mongoose = require("mongoose");
 var db = mongoose.connection;
-db.on('error', console.error);
+db.on('error',console.error);
 
 // 用户信息
-var userSchema = new mongoose.Schema({
-    username: {
-        type: String
-    },
-    password: {
-        type: String
-    },
-    uid: {
-        type: String
-    }
+var userSchema  = new mongoose.Schema({
+        username : {type : String},
+        password : {type : String},
+        uid : {type : String}
 });
-var userModel = db.model('User', userSchema);
+var userModel = db.model('User',userSchema);
 
-function dbUserWithParameters(name, pwd, userId) {
-    var user = new userModel({
-        username: name,
-        password: pwd,
-        uid: userId
-    });
-    return user;
+function dbUserWithParameters (name,pwd,userId) {
+      var user = new userModel({
+           username : name,
+           password : pwd,
+           uid : userId
+      });
+      return user;
 }
 
 // 任务 task
 
-var taskSchema = new mongoose.Schema({
-    account_id: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-    app_id: {
-        type: String
-    },
-    dt: Number,
-    price: Number,
-    task_id: {
-        type: String
-    },
+var taskSchema  = new mongoose.Schema({
+        uid :{type : String},
+        platform_name : {type : String},
+        account_name :{type : String},
+        account_password : {type : String},
+        app_name : {type : String},
+        dt:Number,
+        price:Number
 });
-<<<<<<< Updated upstream
 var taskModel = db.model('Task',taskSchema);
 
-function dbTaskWithParameters (accountid,pid,appid,datetime,settingPrice,taskid) {
-
-      var task = new taskModel({
-        account_id : accountid,
-        platform_id : pid,
-        app_id : appid,
-        dt : datetime,
-        price : settingPrice,
-        task_id : taskid
-      });
-      return task;
-=======
-var taskModel = db.model('Task', taskSchema);
-
-function dbTaskWithParameters(accountid, pid, appid, datetime, settingPrice) {
-
-    var task_id = dbmanager.createid();
+function Task(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice){
     var task = new taskModel({
-        account_id: accountid,
-        platform_id: pid,
-        app_id: appid,
-        dt: datetime,
-        price: settingPrice,
-        task_id: task_id
+        uid :userid,
+        platform_name : platformName,
+        account_name : accountName,
+        account_password : accountPassword,
+        app_name : appName,
+        dt:dateTime,
+        price:settingPrice
     });
     return task;
->>>>>>> Stashed changes
 }
 
-// 爬虫数据
-var showdataSchema = new mongoose.Schema({
-    account_id: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-    app_id: {
-        type: String
-    },
-    dt: Number,
-    price: Number,
-    hourUse: Number,
-    ctr: Number,
-});
-var showdataModel = db.model('Showdata', showdataSchema);
 
-function dbShowdataWithParameters(accountid, pid, appid, datetime, settingPrice, hourUsePara, ctrPara) {
-    var showdata = new showdataModel({
-        account_id: accountid,
-        platform_id: pid,
-        app_id: appid,
-        dt: datetime,
-        price: settingPrice,
-        hourUse: hourUsePara,
-        ctr: ctrPara
-    });
-    return showdata;
+// 爬虫数据
+var spiderdataSchema  = new mongoose.Schema({
+        uid :{type : String},
+        platform_name : {type : String},
+        account_name :{type : String},
+        account_password : {type : String},
+        app_name : {type : String},
+        dt:Number,
+        price:Number,
+        hourUse : Number,
+        ctr : Number,
+});
+var spiderdataModel = db.model('Spiderdata',spiderdataSchema);
+
+function Spiderdata (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara) {
+      var spiderdata = new spiderdataModel({
+        uid :userid,
+        platform_name : platformName,
+        account_name : accountName,
+        account_password : accountPassword,
+        app_name : appName,
+        dt:dateTime,
+        price:settingPrice,
+        hourUse : hourUsePara,
+        ctr : ctrPara
+      });
+      return spiderdata;
 }
 
 // 爬虫任务表 spider task
-var spidertaskSchema = new mongoose.Schema({
-    account_id: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-    uid: {
-        type: String
-    },
+var spidertaskSchema  = new mongoose.Schema({
+    uid :{type : String},
+    platform_name : {type : String},
+    account_name :{type : String},
+    account_password : {type : String},
 });
 
-var spidertaskModel = db.model('spiderTask', spidertaskSchema);
+var spidertaskModel = db.model('spiderTask',spidertaskSchema);
 
-function dbSpiderTaskWithParameters(accountid, pid, userid) {
-    var spiderTask = new spidertaskModel({
-        account_id: accountid,
-        platform_id: pid,
-        uid: userid
-    });
-    return spiderTask;
+function Spidertask (userid,platformName,accountName,accountPassword) {
+      var spiderTask = new spidertaskModel({
+        uid :userid,
+        platform_name : platformName,
+        account_name : accountName,
+        account_password : accountPassword,
+      });
+      return spiderTask;
 }
-
-
-// 广告平台数据
-
-var platformSchema = new mongoose.Schema({
-    platform_name: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-});
-
-var platformModel = db.model('Platform', platformSchema);
-
-function dbPlatformWithParameters(name, id) {
-    var platform = new platformModel({
-        platform_name: name,
-        platform_id: id,
-    });
-    return platform;
-}
-
-// 用户广告平台账户信息
-
-var accountSchema = new mongoose.Schema({
-    account_username: {
-        type: String
-    },
-    account_password: {
-        type: String
-    },
-    account_id: {
-        type: String
-    },
-});
-
-var accountModel = db.model('Account', accountSchema);
-
-function dbAccountWithParameters(name, pwd, id) {
-    var account = new accountModel({
-        account_username: name,
-        account_password: pwd,
-        account_id: id,
-    });
-    return account;
-}
-
-// app 数据
-
-var appSchema = new mongoose.Schema({
-    app_name: {
-        type: String
-    },
-    app_id: {
-        type: String
-    },
-});
-
-var appModel = db.model('App', appSchema);
-
-function dbAppWithParameters(name, id) {
-    var app = new appModel({
-        app_name: name,
-        app_id: id,
-    });
-    return app;
-}
-
-
-// 关系表
-
-var user_platform_account_appSchema = new mongoose.Schema({
-    uid: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-    account_id: {
-        type: String
-    },
-    app_id: {
-        type: String
-    },
-});
-
-var user_platform_account_appModel = db.model('User_platform_account_app', user_platform_account_appSchema);
-
-function dbUser_platform_account_appWithParameters(userid, pid, accountid, appid) {
-    var user_platform_account_app = new user_platform_account_appModel({
-        uid: userid,
-        platform_id: pid,
-        account_id: accountid,
-        app_id: appid
-    });
-    return user_platform_account_app;
-}
-
-var user_platform_accountSchema = new mongoose.Schema({
-    uid: {
-        type: String
-    },
-    platform_id: {
-        type: String
-    },
-    account_id: {
-        type: String
-    },
-});
-
-var user_platform_accountModel = db.model('User_platform_account', user_platform_accountSchema);
-
-function dbUser_platform_account_WithParameters(userid, pid, accountid) {
-    var user_platform_account = new user_platform_accountModel({
-        uid: userid,
-        platform_id: pid,
-        account_id: accountid
-    });
-    return user_platform_account;
-}
-
 
 
 
 
 //数据库连接
-dbmanager.connect = function() {
-    mongoose.connect('mongodb://localhost/test');
+dbmanager.connect = function(){
+  mongoose.connect('mongodb://localhost/test');
 };
 
 // 插入用户数据
-dbmanager.insertUser = function(name, pwd, userId, handler) {
+dbmanager.insertUser = function (name,pwd,userId,handler) {
 
-    var user = dbUserWithParameters(name, pwd, userId);
-    user.save(handler);
+     var user = dbUserWithParameters(name,pwd,userId);
+     user.save(handler);
 };
 
 // 查询用户数据
-dbmanager.findUsers = function(filter, handler) {
-    if (!filter) {
-        userModel.find(handler);
-    } else {
-        userModel.find(filter, handler);
-    }
+dbmanager.findUsers = function (filter,handler) {
+  if (!filter) {
+    userModel.find(handler);
+  } else {
+    userModel.find(filter,handler);
+  }
 };
 
 
 // 插入 task 数据
-<<<<<<< Updated upstream
-dbmanager.insertTask = function (pid,accountid,appid,datetime,settingPrice,handler) {
-     var task_id = this.createid();
-     var task = dbTaskWithParameters(accountid,pid,appid,datetime,settingPrice,task_id);
-     task.save(handler);
-=======
-dbmanager.insertTask = function(pid, accountid, appid, datetime, settingPrice, handler) {
-    var task = dbTaskWithParameters(accountid, pid, appid, datetime, settingPrice);
-    task.save(handler);
->>>>>>> Stashed changes
+dbmanager.insertTask = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,handler) {
+     var filter = {
+        "uid":userid,
+        "platform_name" : platformName,
+        "account_name" : accountName,
+        "account_password" : accountPassword,
+        "app_name" : appName,
+        "dt" : dateTime,
+        "price" : settingPrice
+     };
+     this.findOneTask(filter,function(error,result){
+          if (!result) {
+            var task = Task(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice);
+            task.save(handler);
+          } else {
+            result.price = settingPrice;
+            result.save(handler);
+          }
+     });
 };
+//查询一个 task 数据
+dbmanager.findOneTask = function (filter,handler) {
+     if (!filter) {
+        taskModel.findOne(handler);
+     } else {
+        taskModel.findOne(filter,handler);
+     }
+};
+//查询多个 task 数据
+dbmanager.findTask = function (filter,handler) {
+     if (!filter) {
+        taskModel.find(handler);
+     } else {
+        taskModel.find(filter,handler);
+     }
+};
+
 
 // 插入爬虫展示数据
 // accountid 用户平台账户 id
@@ -300,136 +170,94 @@ dbmanager.insertTask = function(pid, accountid, appid, datetime, settingPrice, h
 // settingPrice 该时刻设置的 价格
 // hourUsePara 当前该小时消耗
 // ctrPara  ctr
-dbmanager.insertShowdata = function(accountid, pid, appid, datetime, settingPrice, hourUsePara, ctrPara, handler) {
-    var showdata = dbShowdataWithParameters(accountid, pid, appid, datetime, settingPrice, hourUsePara, ctrPara);
-    showdata.save(handler);
+dbmanager.insertSpiderdata = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,handler) {
+     var spiderData = Spiderdata(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara);
+     spiderData.save(handler);
 };
 
-// 查询展示数据
+// 查询爬虫数据
 
-dbmanager.findSpiderDatas = function(filter, handler) {
-    if (!filter) {
-        showdataModel.find(handler);
-    } else {
-        showdataModel.find(filter, handler);
-    }
+dbmanager.findSpiderDatas = function (filter,handler) {
+  if (!filter) {
+    spiderdataModel.find(handler);
+  } else {
+    spiderdataModel.find(filter,handler);
+  }
 };
 
-
-// 插入 广告平台数据
-dbmanager.insertPlatform = function(name, id, handler) {
-    var platform = dbPlatformWithParameters(name, id);
-    platform.save(handler);
+// 插入爬虫任务
+dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword) {
+    var spiderTask = SpiderTask(userid,platformName,accountName,accountPassword);
+    spiderTask.save(handler);
 };
 
-// 插入 app 数据
-dbmanager.insertApp = function(name, id, handler) {
-    var app = dbAppWithParameters(name, id);
-    app.save(handler);
-};
-
-// 插入用户广告平台账号数据
-<<<<<<< Updated upstream
-dbmanager.insertAccout = function (name,pwd,id,handler) {
-     var account = dbAccountWithParameters(name,pwd,id);
-     account.save(handler);
-=======
-dbmanager.insertAccount = function(name, pwd, id, handler) {
-    var account = dbAccountWithParameters(name, pwd, id);
-    account.save(handler);
-};
-
-//根据平台账号id查询账号和密码
-dbmanager.findAccountWithId = function(accountid, handler) {
-
-    if (!accountid) {
-        handler("error", "accountid is null");
-    } else {
-        accountModel.find({
-            "account_id": accountid
-        }, handler);
-    }
->>>>>>> Stashed changes
-};
-
-// 插入关系表
-dbmanager.insertUser_platform_account_app = function(userid, pid, accountid, appid, handler) {
-    var user_platform_account_app = dbUser_platform_account_appWithParameters(userid, pid, accountid, appid);
-    user_platform_account_app.save(handler);
-};
-
-dbmanager.insertUser_platform_account = function(userid, pid, accountid, handler) {
-    var user_platform_account = dbUser_platform_account_WithParameters(userid, pid, accountid);
-    user_platform_account.save(handler);
+dbmanager.createid  = function() {
+   return mongoose.Types.ObjectId().toString();
 };
 
 
+dbmanager.promiseFindUser = function(username,handler){
 
-dbmanager.createid = function() {
-    return mongoose.Types.ObjectId().toString();
+  findPromise(userModel,{"username" : username}).then(function(result){
+    // console.log(result);
+    handler(null,result);
+  },function(err){
+
+    // console.log(err);
+    handler(err,null);
+  });
+
 };
 
+/* 其它方法 */
 
-// 爬虫数据便利插入方法
-
-dbmanager.insertSpiderData = function(username, platformname) {
-
-
-};
-
-dbmanager.saveTask = function(platformName, accountName, accountPassword, appName, dt, price, handler) {
-
-    var pid = this.createid();
-    var accountid = this.createid();
-    var appid = this.createid();
-    this.insertTask(accountid, pid, appid, dt, price, handler);
-    this.insertPlatform(platformName, pid, handler);
-    this.insertAccout(accountName, accountPassword, accountid, handler);
-    this.insertApp(appName, appid, handler);
-};
-
-
-
-dbmanager.findPlatformAccountsWithUsername = function(username, handler) {
+dbmanager.findPlatformAccountsWithUsername = function(username,handler) {
     if (!username) {
-        handler("error", "username is null");
+        handler("error","username is null");
     } else {
-        userModel.find({
-            "username": username
-        }, function(error,data){
-           user_platform_accountModel.find({"uid":data[0].uid},function(error,data){
-              accountModel.find({"account_id":data[0].account_id},handler);
-           });
-        });
+       user_platform_accountModel.find({"username" : username },handler);
     }
 };
 
-<<<<<<< Updated upstream
 dbmanager.findTaskWithId = function(taskid,handler){
-=======
-dbmanager.savePlatformAccount = function(accountid, platformid, uid, handler) {
-    var user_platform_account = dbUser_platform_account_WithParameters(uid, platformid, accountid, handler);
-    user_platform_account.save(handler);
+
+  if (!taskid) {
+      handler("error","taskid is null");
+  } else {
+     taskModel.find({"task_id" : taskid },handler);
+  }
 };
 
 
-dbmanager.findTaskWithId = function(taskid, handler) {
->>>>>>> Stashed changes
+var saveInPromise = function (model) {
 
-    if (!taskid) {
-        handler("error", "taskid is null");
-    } else {
-        taskModel.find({
-            "task_id": taskid
-        }, handler);
-    }
+  var promise = new mongoose.Promise();
+
+  model.save(function (err, result) {
+    promise.resolve(err, result);
+  });
+
+  return promise;
 };
 
-// dbmanager.dbUserWithParameters = function (name,pwd,userId) {
-//       var user = new userModel({
-//            username : name,
-//            password : pwd,
-//            uid : userId
-//       });
-//       return user;
-// };
+var findPromise = function (model,filter) {
+
+  var promise = new mongoose.Promise();
+
+  model.find(filter, function (err, result) {
+    promise.resolve(err, result);
+  });
+
+  return promise;
+};
+
+var findOnePromise = function (model,filter) {
+
+  var promise = new mongoose.Promise();
+
+  model.findOne(filter, function (err, result) {
+    promise.resolve(err, result);
+  });
+
+  return promise;
+};
