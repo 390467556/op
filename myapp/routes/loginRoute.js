@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/dbmanager');
-// db.connect();
+db.connect();
 
 // get用于获取登录页面
 router.get('/', (req, res) => {
