@@ -201,6 +201,134 @@ dbmanager.createid  = function() {
 };
 
 
+// 返回给报表页面使用的数据
+
+
+dbmanager.findDefaltSpiderDataForForms = function(uid,handler){
+
+   if (!uid) {
+      handler("error!","uid is null");
+      return;
+   }
+    var formData = {};
+    var showData = {};
+   spiderdataModel.findOne({"uid" : uid},function(error,spiderData){
+      console.log("spiderData" + spiderData);
+      var appName = spiderData.app_name;
+      if (!appName) {
+        handler("error,do not have any app","do not have any app");
+        return;
+      }
+      formData.n = 3;
+      showData.appName = appName;
+      var theDayBeforeYestoday = new Date();
+      var day = theDayBeforeYestoday.getDate();
+      theDayBeforeYestoday.setDate(day - 2);
+      theDayBeforeYestoday.setHours(0);
+      theDayBeforeYestoday.setMinutes(0);
+      theDayBeforeYestoday.setSeconds(0);
+      theDayBeforeYestoday.setMilliseconds(0);
+
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0);
+      tomorrow.setMinutes(0);
+      tomorrow.setSeconds(0);
+      tomorrow.setMilliseconds(0);
+      timestampBefore = theDayBeforeYestoday.getTime();
+      timeStampAfter = tomorrow.getTime();
+
+      // console.log(spiderData);
+      // console.log(timestampBefore);
+      // console.log(timeStampAfter);
+
+      spiderdataModel.find({"uid" : spiderData.uid,"dt":{"$gte":timestampBefore,"$lt":timeStampAfter}},function(error,data){
+
+          var units = convertSpiderDataToFormsData(theDayBeforeYestoday,tomorrow,data);
+          showData.units = units;
+          formData.showData = showData;
+          // console.log(units);
+          handler(error,formData);
+      });
+   });
+
+};
+
+dbmanager.convertSpiderDataToFormsData = convertSpiderDataToFormsData;
+
+function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
+
+  var dateSpider = {};
+  spiderArray.forEach(function(value,index,array){
+     var spiderData = value;
+     var date = new Date(spiderData.dt);
+     date.setMinutes(0);
+     date.setSeconds(0);
+     date.setMilliseconds(0);
+     var timestamp = date.getTime();
+     if (!dateSpider[timestamp]) {
+        dateSpider[timestamp] = spiderData;
+     }
+  });
+  // console.log(dateSpider);
+
+  var start = new Date(startDate);
+  start.setHours(0);
+  start.setMinutes(0);
+  start.setSeconds(0);
+  start.setMilliseconds(0);
+
+  var end = new Date(endDate);
+
+  end.setHours(0);
+  end.setMinutes(0);
+  end.setSeconds(0);
+  end.setMilliseconds(0);
+
+  var startTimestamp = start.getTime();
+  var endTimestamp = end.getTime();
+  // console.log("start " +  startTimestamp);
+  // console.log("end  " +  endTimestamp);
+
+  var days = (endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000);
+  // console.log(days);
+  var currentTimestamp = startTimestamp;
+  var timeStampArray = [];
+  var result = [];
+  for (var count = 0; count < days; count ++) {
+      var dayArray = [];
+      for (var hour = 1; hour <= 24; hour ++) {
+         currentTimestamp = currentTimestamp +  60 * 60 * 1000;
+         timeStampArray.push(currentTimestamp);
+         var currentTimestampString = currentTimestamp + "";
+        //  console.log(currentTimestampString);
+         var resultSpider =  dateSpider[currentTimestampString];
+         var unit;
+         if (resultSpider) {
+
+            unit = {"time" : resultSpider.dt,
+                      "price":resultSpider.price,
+                      "hourUse":resultSpider.hourUse,
+                      "ctr":resultSpider.ctr};
+           dayArray.push(unit);
+         }else {
+            unit = {"time" : currentTimestamp,
+                      "price":0,
+                      "hourUse":0,
+                      "ctr":0};
+           dayArray.push(unit);
+         }
+     }
+     result.push(dayArray);
+  }
+    // console.log(result);
+  return result;
+}
+
+
+
+
+
 /* 其它方法 */
 dbmanager.promiseFindUser = function(username,handler){
 

@@ -21,8 +21,11 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-              var data = JSON.stringify(formData())
-               res.render('forms', {data: data});
+               db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
+                   var result = JSON.stringify(data);
+                   console.log(result);
+                   res.render('forms', {data: result});
+               });
            }
          });
        }
