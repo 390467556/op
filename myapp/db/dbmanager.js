@@ -65,10 +65,11 @@ var spiderdataSchema  = new mongoose.Schema({
         price:Number,
         hourUse : Number,
         ctr : Number,
+        dayBudget:Number
 });
 var spiderdataModel = db.model('Spiderdata',spiderdataSchema);
 
-function Spiderdata (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara) {
+function Spiderdata (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget) {
       var spiderdata = new spiderdataModel({
         uid :userid,
         platform_name : platformName,
@@ -78,7 +79,8 @@ function Spiderdata (userid,platformName,accountName,accountPassword,appName,dat
         dt:dateTime,
         price:settingPrice,
         hourUse : hourUsePara,
-        ctr : ctrPara
+        ctr : ctrPara,
+        dayBudget : dayBudget
       });
       return spiderdata;
 }
@@ -204,8 +206,8 @@ dbmanager.updateTaskStatus = function(taskId, status,handler){
 // settingPrice 该时刻设置的 价格
 // hourUsePara 当前该小时消耗
 // ctrPara  ctr
-dbmanager.insertSpiderdata = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,handler) {
-     var spiderData = Spiderdata(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara);
+dbmanager.insertSpiderdata = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget,handler) {
+     var spiderData = Spiderdata(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget);
      spiderData.save(handler);
 };
 

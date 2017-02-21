@@ -2,14 +2,14 @@ var dbmanager = require("./dbmanager.js");
 dbmanager.connect();
 // dbmanager.insertData();
 
-dbmanager.insertUser("rgh","123","121321313241331",function(err,user){
-
-    if(err){
-        console.log(err);
-        return;
-    }
-    console.log("user did saved");
-});
+// dbmanager.insertUser("rgh","123","121321313241331",function(err,user){
+//
+//     if(err){
+//         console.log(err);
+//         return;
+//     }
+//     console.log("user did saved");
+// });
 
 // dbmanager.findUsers({"username" : "renguohu"},function (error, users) {
 //     console.log(users);
@@ -29,3 +29,5 @@ dbmanager.insertUser("rgh","123","121321313241331",function(err,user){
 //       console.log(result.showData.units[1]);
 //
 // });
+
+dbmanager.insertSpiderdata(dbmanager.createid(),"oppo","dhg@gmail.com","123455","fas",12134234234,400,10,666,999,null);
