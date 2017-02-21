@@ -11,15 +11,16 @@ exports.schedule = function(arg){
     return;
   }
   //注意，月份0代表1月 月份要减一
-  var date = new Date(2017,1,18,17,16,0);
+  //修改时间
+  var date = new Date(2017,1,21,16,24,10);
   var j = cron.scheduleJob(date, function(){
     console.log('现在时间：'+new Date()+"执行预设置脚本");
-    index.login(action,arg,arg + new Date().getTime());
+    index.login(action,arg);
   });
 
   index.on('login_fail',function(){
-    console.log("收到登录失败，重新执行任务.....");
-    index.login(action,arg,arg + new Date().getTime());
+    console.log("收到失败消息，重新执行任务.....");
+    index.login(action,arg);
   });
 
 };

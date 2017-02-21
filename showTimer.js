@@ -15,12 +15,12 @@ exports.schedule = function(arg) {
     rule.second = 0;
     cron.scheduleJob(rule, function() {
         console.log(new Date(), "任务执行--每小时执行--爬虫");
-        index.login(action, arg,arg + new Date().getTime());
+        index.login(action, arg);
     });
 
-    index.on('login_fail', function() {
-        console.log("收到登录失败，重新执行任务.....");
-        index.login(action, arg,arg + new Date().getTime());
+    index.on('fail', function() {
+        console.log("收到失败消息，重新执行任务.....");
+        index.login(action, arg);
     });
 
 };

@@ -91,7 +91,7 @@ var spidertaskSchema  = new mongoose.Schema({
     account_password : {type : String},
 });
 
-var spidertaskModel = db.model('spiderTask',spidertaskSchema);
+var spidertaskModel = db.model('Spidertask',spidertaskSchema);
 
 function Spidertask (userid,platformName,accountName,accountPassword) {
       var spiderTask = new spidertaskModel({
@@ -139,9 +139,9 @@ dbmanager.insertTask = function (userid,platformName,accountName,accountPassword
         "dt" : dateTime,
         "price" : settingPrice,
      };
+     var task_id = this.createid();
      this.findOneTask(filter,function(error,result){
           if (!result) {
-            var task_id = this.createid();
             var task = Task(task_id,userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta);
             task.save(handler);
           } else {
@@ -203,8 +203,8 @@ dbmanager.findSpiderDatas = function (filter,handler) {
 };
 
 // 插入爬虫任务
-dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword) {
-    var spiderTask = SpiderTask(userid,platformName,accountName,accountPassword);
+dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword,handler) {
+    var spiderTask = Spidertask(userid,platformName,accountName,accountPassword);
     spiderTask.save(handler);
 };
 
