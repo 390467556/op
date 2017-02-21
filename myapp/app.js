@@ -9,7 +9,7 @@ var users = require('./routes/users');
 var login = require('./routes/loginRoute');
 var register = require('./routes/registerRoute');
 var config = require('./routes/configRoute');
-var forms = require('./routes/forms');
+var forms = require('./routes/formsRoute');
 
 var db = require('./db/dbmanager');
 db.connect();
