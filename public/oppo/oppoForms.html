@@ -12,6 +12,22 @@
 				$(this).addClass("border").siblings().removeClass("border");
 			});
 			$( ".date" ).datepicker();
+			$( ".start" ).datepicker({
+             defaultDate: "+1w",
+             changeMonth: true,
+             numberOfMonths: 2,
+             onClose: function( selectedDate ) {
+            $( ".end" ).datepicker( "option", "minDate", selectedDate );
+            }
+           });
+           $( ".end" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+           $( ".start" ).datepicker( "option", "maxDate", selectedDate );
+           }
+          });
 		});
 	</script>
 	<style>
@@ -64,7 +80,7 @@
 			line-height: 34px;
 			width: 90px;
 		}
-		.menu span,.date,.selectTwo {
+		.menu span,.start,.end,.select,.selectTwo {
 			float: right;
 			height: 35px;
 			margin-top:15px;
@@ -107,12 +123,13 @@
 				<li class="border"><a href="">报表页面</a></li>
 			</ul>
 			<div>下载报表</div>
+			<input type="text" class="end" name="end" style="border:1px solid #ddd;"><span>to</span>
+			<input type="text" class="start" name="start" style="border:1px solid #ddd;">
 			<select class="selectOne special">
 			 <option>小时消耗表</option>
 			 <option>ctr表</option>
 			 <option>单价</option>
 			</select>
-			<input type="date" class="date" style="border:1px solid #ddd;">
 			<span><input type="radio" name="time">过去30天</span>
 			<span><input type="radio" name="time">过去7天</span>
 			<span><input type="radio" name="time">今日</span>
