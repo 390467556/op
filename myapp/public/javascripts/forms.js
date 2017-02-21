@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-20 21:13:31
+ * @Last Modified time: 2017-02-21 20:29:01
  * @Simple Description:  Javascript for forms page
  */
 
@@ -17,30 +17,30 @@ $(function() {
 		$( ".date" ).datepicker();
     });
 
-    var Form = function(n, formData, className, type) {
+    var Form = function(n, formData, hidden, type) {
         this.days = n
         this.data = formData
-        this.className = className
         this.app = formData['appName']
         this.type = type
+        this.hidden = hidden
     }
 
     Form.prototype = {
         formatHeader: function() {
             var headerStr = '<tr><td></td>'
-            for (var i = this.days - 1; i >= 0; i--) {
-                headerStr += ['<td>', moment().subtract(i, 'days').format('YYYY/MM/DD'), '</td>'].join('')
+            for (var i = 0; i < 24; i++) {
+                headerStr += ['<td>', i, '</td>'].join('')
             }
             this.header = headerStr + '</tr>'
             return this.header
         },
 
         formatData: function() {
-            var tmp = new Array(24)
+            var tmp = new Array(this.days)
             var dataStr
-            for (var i = 0; i < 24; i++) {
-                dataStr = '<tr><td>' + i + '</td>'
-                for (var j = 0; j < this.days; j++) { 
+            for (var i = this.days -1 ; i <= 0; i--) {
+                dataStr = '<tr><td>' + moment().subtract(i, 'days').format('YYYY-MM-DD') + '</td>'
+                for (var j = 0; j < 24; j++) { 
                     dataStr += '<td>' + this.data['units'][i][j][this.type] + '</td>'
                 }
                 dataStr += '</tr>'
@@ -54,7 +54,12 @@ $(function() {
             var headStr = this.formatHeader(),
                 dataStr = this.formatData()
             var tableStr = headStr + dataStr
-            var tmp = ['<div class="table ', this.className, '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')
+            var tmp
+            if (this.hidden) {
+                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable hidden" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')                    
+            } else {
+                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')    
+            }
             tableStr = tmp + tableStr + '</table></div>'
             $('.menu').after(tableStr)
         }
@@ -62,9 +67,9 @@ $(function() {
 
     function formsGenerator(data) {
         var n = data['n'], forms = data['showData']
-        var ctr = new Form(n, forms, 'hidden', 'price'),
-            hourPrice = new Form(n, forms, 'active', 'hourUse'),
-            price = new Form(n, forms, 'hidden', 'ctr')     
+        var ctr = new Form(n, forms, true, 'price'),
+            hourPrice = new Form(n, forms, false, 'hourUse'),
+            price = new Form(n, forms, true, 'ctr')     
         ctr.createTable()
         hourPrice.createTable()
         price.createTable()      
@@ -77,11 +82,9 @@ $(function() {
         $('.table[class!="hidden"] .showTable').each(function() {
             var $this = $(this)
             if ($this.data('type') === type) {
-                $this.addClass('active')
                 $this.removeClass('hidden')
             } else {
                 $this.addClass('hidden')
-                $this.removeClass('active')
             }
         })
     })
