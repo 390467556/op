@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-21 21:25:39
+ * @Last Modified time: 2017-02-22 00:09:27
  * @Simple Description:  Javascript for forms page
  */
 
@@ -39,7 +39,7 @@ $(function() {
             var tmp = new Array(this.days)
             var dataStr
             for (var i = this.days -1 ; i >= 0; i--) {
-                dataStr = '<tr><td>' + moment().subtract(i, 'days').format('YYYY-MM-DD') + '</td>'
+                dataStr = '<tr><td>' + moment(this.data['units'][i][j]['time']).format('YYYY-MM-DD') + '</td>'
                 for (var j = 0; j < 24; j++) { 
                     dataStr += '<td>' + this.data['units'][i][j][this.type] + '</td>'
                 }

@@ -23,13 +23,16 @@ block content
                     a(href="javascript: void(0)") 报表页面
             
             div 下载报表
-
+            input.end(type="text", name="end", style="border:1px solid #ddd;")
+            span to
+            input.start(type="text", name="start", style="border:1px solid #ddd;")
+            
+            
             select.selectOne.special
                 option(value="hourUse", selected=true) 小时消耗表
                 option(value="ctr") ctr表
                 option(value="price") 单价
             
-            input.date(style="border:1px solid #ddd;")
             span 
                 input.days(type="radio", name="days", value="30")
                 |过去30天
