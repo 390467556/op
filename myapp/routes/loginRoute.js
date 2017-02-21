@@ -5,7 +5,7 @@ var db = require('../db/dbmanager');
 
 // get用于获取登录页面
 router.get('/', (req, res) => {
-    res.render('login', {warn: 'test'})
+    res.render('login')
 })
 
 // post用于登录
@@ -23,7 +23,6 @@ router.post('/', (req, res) => {
            } else {
                db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
                    var result = JSON.stringify(data);
-                   console.log(result);
                    res.render('forms', {data: result});
                });
            }
