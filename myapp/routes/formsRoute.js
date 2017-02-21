@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
 
     // var data = JSON.stringify(formData());
     // res.render('forms', {data: data});
-    db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
+    db.findDefaltSpiderDataForFormsWithUid("121321313241331",function(error,data){
         var result = JSON.stringify(data);
         res.render('forms', {data: result});
     });
