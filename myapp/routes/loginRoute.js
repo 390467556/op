@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/dbmanager');
-db.connect();
+// db.connect();
 
 // get用于获取登录页面
 router.get('/', (req, res) => {
@@ -21,10 +21,13 @@ router.post('/', (req, res) => {
            if (users.length === 0) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-               db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
-                   var result = JSON.stringify(data);
-                   res.render('forms', {data: result});
-               });
+              //  db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
+              //      var result = JSON.stringify(data);
+              //      res.render('forms', {data: result});
+              //  });
+
+              var result = JSON.stringify(formData());
+              res.render('forms', {data: result});
            }
          });
        }
