@@ -26,25 +26,29 @@ function dbUserWithParameters (name,pwd,userId) {
 // 任务 task
 
 var taskSchema  = new mongoose.Schema({
+        task_id :{type : String},
         uid :{type : String},
         platform_name : {type : String},
         account_name :{type : String},
         account_password : {type : String},
         app_name : {type : String},
         dt:Number,
-        price:Number
+        price:Number,
+        status:Boolean
 });
 var taskModel = db.model('Task',taskSchema);
 
-function Task(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice){
+function Task(taskid,userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta){
     var task = new taskModel({
+        task_id : taskid,
         uid :userid,
         platform_name : platformName,
         account_name : accountName,
         account_password : accountPassword,
         app_name : appName,
         dt:dateTime,
-        price:settingPrice
+        price:settingPrice,
+        status:sta
     });
     return task;
 }
@@ -125,7 +129,7 @@ dbmanager.findUsers = function (filter,handler) {
 
 
 // 插入 task 数据
-dbmanager.insertTask = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,handler) {
+dbmanager.insertTask = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta,handler) {
      var filter = {
         "uid":userid,
         "platform_name" : platformName,
@@ -133,11 +137,12 @@ dbmanager.insertTask = function (userid,platformName,accountName,accountPassword
         "account_password" : accountPassword,
         "app_name" : appName,
         "dt" : dateTime,
-        "price" : settingPrice
+        "price" : settingPrice,
      };
      this.findOneTask(filter,function(error,result){
           if (!result) {
-            var task = Task(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice);
+            var task_id = this.createid();
+            var task = Task(task_id,userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta);
             task.save(handler);
           } else {
             result.price = settingPrice;
@@ -196,6 +201,7 @@ dbmanager.createid  = function() {
 };
 
 
+/* 其它方法 */
 dbmanager.promiseFindUser = function(username,handler){
 
   findPromise(userModel,{"username" : username}).then(function(result){
@@ -209,7 +215,6 @@ dbmanager.promiseFindUser = function(username,handler){
 
 };
 
-/* 其它方法 */
 
 dbmanager.findPlatformAccountsWithUsername = function(username,handler) {
     if (!username) {
