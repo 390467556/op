@@ -2,22 +2,36 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-22 00:09:27
+ * @Last Modified time: 2017-02-22 00:13:20
  * @Simple Description:  Javascript for forms page
  */
 
-$(function() {
+$(function () {
     'use strict';
     var moment = window.moment
 
-    $(function () { 
-        $(".menu li").click(function(){
-			$(this).addClass("border").siblings().removeClass("border");
-		});
-		$( ".date" ).datepicker();
+    $(".menu li").click(function () {
+        $(this).addClass("border").siblings().removeClass("border");
+    });
+    $(".date").datepicker();
+    $(".start").datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 2,
+        onClose: function (selectedDate) {
+            $(".end").datepicker("option", "minDate", selectedDate);
+        }
+    });
+    $(".end").datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 2,
+        onClose: function (selectedDate) {
+            $(".start").datepicker("option", "maxDate", selectedDate);
+        }
     });
 
-    var Form = function(n, formData, hidden, type) {
+    var Form = function (n, formData, hidden, type) {
         this.days = n
         this.data = formData
         this.app = formData['appName']
@@ -26,7 +40,7 @@ $(function() {
     }
 
     Form.prototype = {
-        formatHeader: function() {
+        formatHeader: function () {
             var headerStr = '<tr><td></td>'
             for (var i = 0; i < 24; i++) {
                 headerStr += ['<td>', i, '</td>'].join('')
@@ -35,12 +49,12 @@ $(function() {
             return this.header
         },
 
-        formatData: function() {
+        formatData: function () {
             var tmp = new Array(this.days)
             var dataStr
-            for (var i = this.days -1 ; i >= 0; i--) {
+            for (var i = this.days - 1; i >= 0; i--) {
                 dataStr = '<tr><td>' + moment(this.data['units'][i][j]['time']).format('YYYY-MM-DD') + '</td>'
-                for (var j = 0; j < 24; j++) { 
+                for (var j = 0; j < 24; j++) {
                     dataStr += '<td>' + this.data['units'][i][j][this.type] + '</td>'
                 }
                 dataStr += '</tr>'
@@ -50,15 +64,15 @@ $(function() {
             return this.tableStr
         },
 
-        createTable: function() {
+        createTable: function () {
             var headStr = this.formatHeader(),
                 dataStr = this.formatData()
             var tableStr = headStr + dataStr
             var tmp
             if (this.hidden) {
-                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable hidden" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')                    
+                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable hidden" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')
             } else {
-                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')    
+                tmp = ['<div class="table', '" data-app="', this.app, '" data-days="', this.days, '" ><table class="showTable" style="margin-top: 20px"', ' data-type="', this.type, '">'].join('')
             }
             tableStr = tmp + tableStr + '</table></div>'
             $('.menu').after(tableStr)
@@ -66,20 +80,21 @@ $(function() {
     }
 
     function formsGenerator(data) {
-        var n = data['n'], forms = data['showData']
+        var n = data['n'],
+            forms = data['showData']
         var ctr = new Form(n, forms, true, 'price'),
             hourPrice = new Form(n, forms, false, 'hourUse'),
-            price = new Form(n, forms, true, 'ctr')     
+            price = new Form(n, forms, true, 'ctr')
         ctr.createTable()
         hourPrice.createTable()
-        price.createTable()      
+        price.createTable()
     }
-    
+
     formsGenerator(window.opdata)
 
-    $('.selectOne').on('change', function() {
+    $('.selectOne').on('change', function () {
         var type = $(this).find('option:selected').val()
-        $('.table[class!="hidden"] .showTable').each(function() {
+        $('.table[class!="hidden"] .showTable').each(function () {
             var $this = $(this)
             if ($this.data('type') === type) {
                 $this.removeClass('hidden')
@@ -90,11 +105,11 @@ $(function() {
     })
 
     var hasCache = {}
-    $('.days').on('change', function() {
+    $('.days').on('change', function () {
         var $this = $(this),
             days = $this.val()
-        if (hasCache[''+days]) {
-            $('.table').each(function(){
+        if (hasCache['' + days]) {
+            $('.table').each(function () {
                 var $this = $(this)
                 if ($this.data('days') === days) {
                     $this.removeClass('hidden')
@@ -102,7 +117,7 @@ $(function() {
                     $this.addClass('hidden')
                 }
             })
-            return 
+            return
         }
     })
     // $.ajax({
@@ -116,4 +131,3 @@ $(function() {
     //         formsGenerator(data)
     //     })
 })
-
