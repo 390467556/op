@@ -167,6 +167,18 @@ dbmanager.findTask = function (filter,handler) {
      }
 };
 
+dbmanager.updateTaskStatus = function(taskId, status,handler){
+
+  this.findOneTask({"task_id" : taskId},function(error,result){
+       if (!result) {
+         handler("error,do not have the task","error, do not have the task");
+       } else {
+         result.status  = status;
+         result.save(handler);
+       }
+  });
+};
+
 
 // 插入爬虫展示数据
 // accountid 用户平台账户 id
