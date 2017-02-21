@@ -6,6 +6,11 @@ body {
 			width:1000px;
 			margin:0 auto;
 			overflow: hidden;
+			position: relative;
+			min-height: 900px;
+		}
+		.content input {
+			outline: none;
 		}
 		.menu {
 			overflow: hidden;
@@ -68,10 +73,30 @@ body {
 		}
 		.table input {
 			border: none;
-			outline: none;
+		}
+		input.submit {
+			background: #CCCCCC;
+			border-radius: 3px;
+			width: 80px;
+			height: 30px
+		}
+		input.reset {
+			background: #CCCCCC;
+			border-radius: 3px;
+			width: 80px;
+			height: 30px
+		}
+		.space {
+			color:rgba(0,0,0,0);
+			position: relative;
+			top:1000000000px;
 		}
 		td.first {
 			width: 35px;
+		}
+		.last {
+			padding: 5px;
+			border:none;
 		}
 		.link {
 			text-decoration: none;

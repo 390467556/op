@@ -12,6 +12,10 @@ block stylesheets
 block content
     div.content
         h3 效果报表
+        input(type="text", name="name", placeholder="平台名称")
+        input(type="text", name="appusrname", placeholder="平台账号")
+        input(type="text", name="apppwd", placeholder="平台密码")
+        input(type="text", name="appname", placeholder="app名称")
         div.menu
             ul
                 a.link(href="javascript: void(0)")
@@ -47,4 +51,9 @@ block content
                         td.firstt 单价
                         - for (var i = 0; i < 24; i++)
                             td
-                                input(type="number")
+                                input(type="text")
+                    tr
+                        td.last(colspan="25")
+                            input.submit(type="submit", value="提交")
+                                i.space 空格
+                                input.reset(type="reset", value="重置")
