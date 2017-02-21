@@ -127,6 +127,23 @@ dbmanager.findUsers = function (filter,handler) {
   }
 };
 
+// 查询用户数据
+dbmanager.findOneUser = function (filter,handler) {
+  if (!filter) {
+    handler("error,filter is null","error,filter is null");
+  } else {
+    userModel.findOne(filter,handler);
+  }
+};
+
+dbmanager.findOneUserWithUsername = function (username,handler) {
+  if (!username) {
+      handler("error,username is null","error,username is null");
+  } else {
+    userModel.findOne({"username" : username},handler);
+  }
+};
+
 
 // 插入 task 数据
 dbmanager.insertTask = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta,handler) {
@@ -213,10 +230,19 @@ dbmanager.createid  = function() {
 };
 
 
+dbmanager.findDefaltSpiderDataForFormsWithUsername = function(username,handler){
+    this.findOneUserWithUsername(username,function(error,user){
+      if (!user) {
+         handler("error,user is not exist","error,user is not exist");
+         return;
+      }
+      dbmanager.findDefaltSpiderDataForFormsWithUid(user.uid,handler);
+    });
+};
+
 // 返回给报表页面使用的数据
 
-
-dbmanager.findDefaltSpiderDataForForms = function(uid,handler){
+dbmanager.findDefaltSpiderDataForFormsWithUid = function(uid,handler){
 
    if (!uid) {
       handler("error!","uid is null");
@@ -226,6 +252,10 @@ dbmanager.findDefaltSpiderDataForForms = function(uid,handler){
     var showData = {};
    spiderdataModel.findOne({"uid" : uid},function(error,spiderData){
       console.log("spiderData" + spiderData);
+      if (!spiderData) {
+        handler("error,do not have any data","do not have any data");
+        return;
+      }
       var appName = spiderData.app_name;
       if (!appName) {
         handler("error,do not have any app","do not have any app");

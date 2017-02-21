@@ -17,17 +17,18 @@ router.post('/', (req, res) => {
        if (users.length === 0) {
           res.render('login',{warn:"该用户不存在"});
        } else {
-         db.findUsers({"username" : username, "password" : password },function (err,users) {
-           if (users.length === 0) {
+         db.findOneUser({"username" : username, "password" : password },function (err,user) {
+           console.log("user " + user);
+           if (!user) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
-              //  db.findDefaltSpiderDataForForms("121321313241331",function(error,data){
-              //      var result = JSON.stringify(data);
-              //      res.render('forms', {data: result});
-              //  });
+               db.findDefaltSpiderDataForFormsWithUsername(username,function(error,data){
+                   var result = JSON.stringify(data);
+                   res.render('forms', {data: result});
+               });
 
-              var result = JSON.stringify(formData());
-              res.render('forms', {data: result});
+              // var result = JSON.stringify(formData());
+              // res.render('forms', {data: result});
            }
          });
        }
