@@ -1,90 +1,106 @@
+* {
+	margin: 0;
+	padding: 0;
+}
 
-		body {
-			margin:0;
-			padding: 0;
-		}
-		.content {
-			width:1000px;
-			margin:0 auto;
-			overflow: hidden;
-		}
-		.menu {
-			overflow: hidden;
-		}
-		.menu ul {
-			width:100%;
-			border:1px solid #ddd;
-			height: 60px;
-			padding: 0 0 3px 0;
-			float: left;
-		}
-		.menu li {
-			list-style: none;
-			float: left;
-			width: 200px;
-			height: 60px;
-			text-align: center;
-			line-height: 60px;
-			font-size: 20px;
-			color:#777;
-		}
-		.border {
-			border-bottom: 3px solid #009966;
-			color:#009966;
-		}
-		.menu div,.selectOne {
-			width:80px;
-			height:30px;
-			border:1px solid #ddd;
-			text-align: center;
-			float: left;
-			line-height: 30px;
-			color:#777;
-			margin-top:15px;
-			margin-right: 10px;
-		}
-		.special {
-			height: 34px;
-			line-height: 34px;
-			width: 90px;
-		}
-		.menu span,.date,.selectTwo {
-			float: right;
-			height: 35px;
-			margin-top:15px;
-			line-height: 35px;
-			border-color: #ddd;
-			outline: none;
-		}
-		table {
-	    	table-layout : fixed ;
-	    	width:100%;
-	    	border-spacing: 0;
-	    	border-collapse:collapse;
-	    	padding:0;
-	    }
-		td {
-			padding: 0;
-			margin:0;
-			border: 1px solid #ddd;
-			width:10px;
-			height:25px;
-			overflow: hidden;
-			line-height: 25px;
-			text-align: center;
-		}
-		td.first {
-			width: 35px;
-		}
-		a {
-			text-decoration: none;
-			color: #777;
-		}
+.content {
+	width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
 
-		.hidden {
-			display: none;
-		}
+.menu {
+	overflow: hidden;
+}
 
-		.active {
-			display: block;
-		}
+.menu ul {
+	width: 100%;
+	border: 1px solid #ddd;
+	height: 60px;
+	padding: 0 0 3px 0;
+	float: left;
+}
+
+.menu li {
+	list-style: none;
+	float: left;
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-size: 20px;
+	color: #777;
+}
+
+.border {
+	border-bottom: 3px solid #009966;
+	color: #009966;
+}
+
+.menu div, .selectOne {
+	width: 80px;
+	height: 30px;
+	border: 1px solid #ddd;
+	text-align: center;
+	float: left;
+	line-height: 30px;
+	color: #777;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+
+.special {
+	height: 34px;
+	line-height: 34px;
+	width: 90px;
+}
+
+.menu span, .start, .end, .select, .selectTwo, .submit {
+	float: right;
+	height: 35px;
+	margin-top: 15px;
+	line-height: 35px;
+	border-color: #ddd;
+	outline: none;
+}
+
+.other {
+	border: none;
+	background: red;
+	margin-left: 10px;
+	width: 30px;
+	background: #CCCCCC;
+	border-radius: 5px;
+}
+
+.submit:active {
+	background: #0099CC;
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+	padding: 0;
+}
+
+td {
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ddd;
+	width: 10px;
+	height: 25px;
+	overflow: hidden;
+	line-height: 25px;
+	text-align: center;
+}
+
+td.first {
+	width: 35px;
+}
+
+a {
+	text-decoration: none;
+	color: #777;
+}

@@ -23,9 +23,11 @@ block content
                     a(href="javascript: void(0)") 报表页面
             
             div 下载报表
-            input.end(type="text", name="end", style="border:1px solid #ddd;")
-            span to
-            input.start(type="text", name="start", style="border:1px solid #ddd;")
+            form(action="/forms")
+                input.submit.other(type="submit" style="float:right;")
+                input.end(type="text", name="end", style="border:1px solid #ddd;")
+                span to
+                input.start(type="text", name="start", style="border:1px solid #ddd;")
             
             
             select.selectOne.special
