@@ -65,11 +65,12 @@ var spiderdataSchema  = new mongoose.Schema({
         price:Number,
         hourUse : Number,
         ctr : Number,
-        dayBudget:Number
+        dayBudget:Number,
+        use_num :Number,
 });
 var spiderdataModel = db.model('Spiderdata',spiderdataSchema);
 
-function Spiderdata (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget) {
+function Spiderdata (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget,use_num) {
       var spiderdata = new spiderdataModel({
         uid :userid,
         platform_name : platformName,
@@ -80,7 +81,8 @@ function Spiderdata (userid,platformName,accountName,accountPassword,appName,dat
         price:settingPrice,
         hourUse : hourUsePara,
         ctr : ctrPara,
-        dayBudget : dayBudget
+        dayBudget : dayBudget,
+        use_num : use_num
       });
       return spiderdata;
 }
@@ -91,18 +93,16 @@ var spidertaskSchema  = new mongoose.Schema({
     platform_name : {type : String},
     account_name :{type : String},
     account_password : {type : String},
-    use_num : Number
 });
 
 var spidertaskModel = db.model('Spidertask',spidertaskSchema);
 
-function Spidertask (userid,platformName,accountName,accountPassword,useNum) {
+function Spidertask (userid,platformName,accountName,accountPassword) {
       var spiderTask = new spidertaskModel({
         uid :userid,
         platform_name : platformName,
         account_name : accountName,
         account_password : accountPassword,
-        use_num : useNum
       });
       return spiderTask;
 }
@@ -208,8 +208,8 @@ dbmanager.updateTaskStatus = function(taskId, status,handler){
 // settingPrice 该时刻设置的 价格
 // hourUsePara 当前该小时消耗
 // ctrPara  ctr
-dbmanager.insertSpiderdata = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget,handler) {
-     var spiderData = Spiderdata(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget);
+dbmanager.insertSpiderdata = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget,useNum,handler) {
+     var spiderData = Spiderdata(userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,hourUsePara,ctrPara,dayBudget,useNum);
      spiderData.save(handler);
 };
 
@@ -224,8 +224,8 @@ dbmanager.findSpiderDatas = function (filter,handler) {
 };
 
 // 插入爬虫任务
-dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword,useNum,handler) {
-    var spiderTask = Spidertask(userid,platformName,accountName,accountPassword,useNum);
+dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword,handler) {
+    var spiderTask = Spidertask(userid,platformName,accountName,accountPassword);
     spiderTask.save(handler);
 };
 
