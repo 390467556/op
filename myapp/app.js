@@ -29,7 +29,7 @@ app.use(session({
 		saveUninitialized: true,
     secret : "test and test",
 		name: 'xsession',
-		cookie: { maxAge: 60 * 1000}
+		cookie: { maxAge: 60 * 60 * 1000}
 	}));
 
 app.use(logger('dev'));
