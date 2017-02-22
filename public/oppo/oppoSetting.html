@@ -11,7 +11,6 @@
 			$(".menu li").click(function(){
 				$(this).addClass("border").siblings().removeClass("border");
 			});
-			/*  日期选择器
 			$( ".start" ).datepicker({
              defaultDate: "+1w",
              changeMonth: true,
@@ -28,16 +27,15 @@
            $( ".start" ).datepicker( "option", "maxDate", selectedDate );
            }
           });
-          */
 		});
 	</script>
 	<style>
-		body {
+		* {
 			margin:0;
 			padding: 0;
 		}
 		.content {
-			width:1000px;
+			width:1001px;
 			margin:0 auto;
 			overflow: hidden;
 			position: relative;
@@ -47,10 +45,11 @@
 			outline: none;
 		}
 		.menu {
+			margin-top: 30px;
 			overflow: hidden;
 		}
 		.menu ul {
-			width:100%;
+			width:999px;
 			border:1px solid #ddd;
 			height: 60px;
 			padding: 0 0 3px 0;
@@ -87,6 +86,11 @@
 			line-height: 35px;
 			border-color: #ddd;
 			outline: none;
+		}
+		span.special {
+			margin:15px 150px 0 155px;
+			width: 15px;
+			height: 30px;
 		}
 		table {
 	    	table-layout : fixed ;
@@ -139,23 +143,42 @@
 			height: 60px;
 			float: left;
 		}
+		.tr {
+			position: absolute;
+			top:25px;
+			margin-bottom: 10px;
+		}
+		.td {
+			position: absolute;
+			width: 145px;
+			height: 30px;
+		}
+		.td input {
+			width:145px;
+			height:30px;
+			margin:0;
+			padding:0;
+		}
+		.tdOne {
+			top: 136px;
+			right: 0px;
+		}
+		.tdTwo {
+			top: 136px;
+			right: 170px;
+		}
 	</style>
 </head>
 <body>
 	<div class="content">
 	    <h3>效果报表</h3>
-	        <input type="text" name="name" placeholder="平台名称">
-			<input type="text" name="appusrname" placeholder="平台账号">
-			<input type="text" name="apppwd" placeholder="平台密码">
-			<input type="text" name="appname" placeholder="app名称">
 		<div class="menu">
 			<ul>
 				<a href="./oppoSetting.html" class="link"><li class="border">设置页面</li></a>
 				<a href="./oppoForms.html" class="link"><li>报表页面</li></a>
 			</ul>
 			<div>下载报表</div>
-			<!-- <input type="text" class="end" name="end" style="border:1px solid #ddd;"><span>to</span> -->
-			<!-- <input type="text" class="start" name="start" style="border:1px solid #ddd;"> -->
+			 <span class ="special">to</span>
 			<span><input type="radio" name="time">过去30天</span>
 			<span><input type="radio" name="time">过去7天</span>
 			<span><input type="radio" name="time">今日</span>
@@ -223,6 +246,16 @@
 			</tr>
 			<tr>
 			        <td colspan="25" class="last"><input type="submit" value="提交" class="submit"><i class="space">空格</i><input type="reset" value="重置" class="reset"></td>
+			</tr>
+			<tr class="tr">
+			        <td><input type="text" name="name" placeholder="平台名称"></td>
+			        <td><input type="text" name="appusrname" placeholder="平台账号"></td>
+			        <td><input type="text" name="apppwd" placeholder="平台密码"></td>
+			        <td><input type="text" name="appname" placeholder="app名称"></td>
+			</tr>
+			<tr>
+				    <td class="td tdOne"><input type="text" class="end" name="end"></td>
+			        <td class="td tdTwo"><input type="text" class="start" name="start"></td>
 			</tr>
 		   </table>
 		 </form>
