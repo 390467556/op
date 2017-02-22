@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-22 13:47:17
+ * @Last Modified time: 2017-02-22 21:55:58
  * @Simple Description:  Javascript for forms page
  */
 
@@ -89,8 +89,8 @@ $(function () {
         hourPrice.createTable()
         price.createTable()
     }
-
-    formsGenerator(window.opdata)
+   
+    window.opdata && formsGenerator(window.opdata)
 
     $('.selectOne').on('change', function () {
         var type = $(this).find('option:selected').val()
