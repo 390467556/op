@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-  console.log(req.body);
+  console.log("config : "+ JSON.stringify(req.body));
 
 })
 
