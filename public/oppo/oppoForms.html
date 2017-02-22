@@ -80,13 +80,24 @@
 			line-height: 34px;
 			width: 90px;
 		}
-		.menu span,.start,.end,.select,.selectTwo {
+		.menu span,.start,.end,.select,.selectTwo,.submit {
 			float: right;
 			height: 35px;
 			margin-top:15px;
 			line-height: 35px;
 			border-color: #ddd;
 			outline: none;
+		}
+		.other {
+			border:none;
+			background: red;
+			margin-left: 10px;
+			width:30px;
+			background: #CCCCCC;
+			border-radius: 5px;
+		}
+		.submit:active {
+			background: #0099CC;
 		}
 		table {
 	    	table-layout : fixed ;
@@ -124,6 +135,7 @@
 			</ul>
 			<div>下载报表</div>
 			<form action="">
+			<input class = "submit other" type="submit" style="float:right;">
 			<input type="text" class="end" name="end" style="border:1px solid #ddd;"><span>to</span>
 			<input type="text" class="start" name="start" style="border:1px solid #ddd;">
 			</form>
