@@ -4,6 +4,8 @@ block scripts
     script(src="/javascripts/lib/moment.js")    
     script(src="/javascripts/lib/jquery-ui/js/jquery-ui-1.10.4.custom.min.js")
     script(src="/javascripts/config.js")    
+    if msg
+        script alert("#{msg}")
 
 block stylesheets
     link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
@@ -12,17 +14,13 @@ block stylesheets
 block content
     div.content
         h3 效果报表
-        input(type="text", name="name", placeholder="平台名称")
-        input(type="text", name="appusrname", placeholder="平台账号")
-        input(type="text", name="apppwd", placeholder="平台密码")
-        input(type="text", name="appname", placeholder="app名称")
         div.menu
             ul
                 a.link(href="javascript: void(0)")
                     li.border 设置页面
                 a.link(href="/forms")
                     li 报表页面
-
+            span.special to       
             span 
                 input(type="radio", name="time", value="30")
                 | 过去30天

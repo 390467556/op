@@ -5,7 +5,8 @@ block scripts
     script(src="/javascripts/lib/moment.js")  
     script window.opdata=!{data};
     script(src="/javascripts/forms.js")
-    
+    if msg
+        script alert("#{msg}")
     
 block stylesheets
     link(href="/stylesheets/jquery-ui/base/jquery-ui-1.10.4.custom.css", rel="stylesheet")
