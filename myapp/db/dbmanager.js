@@ -91,16 +91,18 @@ var spidertaskSchema  = new mongoose.Schema({
     platform_name : {type : String},
     account_name :{type : String},
     account_password : {type : String},
+    use_num : Number
 });
 
 var spidertaskModel = db.model('Spidertask',spidertaskSchema);
 
-function Spidertask (userid,platformName,accountName,accountPassword) {
+function Spidertask (userid,platformName,accountName,accountPassword,useNum) {
       var spiderTask = new spidertaskModel({
         uid :userid,
         platform_name : platformName,
         account_name : accountName,
         account_password : accountPassword,
+        use_num : useNum
       });
       return spiderTask;
 }
@@ -222,8 +224,8 @@ dbmanager.findSpiderDatas = function (filter,handler) {
 };
 
 // 插入爬虫任务
-dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword,handler) {
-    var spiderTask = Spidertask(userid,platformName,accountName,accountPassword);
+dbmanager.insertSpiderTask = function (userid,platformName,accountName,accountPassword,useNum,handler) {
+    var spiderTask = Spidertask(userid,platformName,accountName,accountPassword,useNum);
     spiderTask.save(handler);
 };
 
