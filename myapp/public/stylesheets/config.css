@@ -1,107 +1,163 @@
-body {
-			margin:0;
-			padding: 0;
-		}
-		.content {
-			width:1000px;
-			margin:0 auto;
-			overflow: hidden;
-			position: relative;
-			min-height: 900px;
-		}
-		.content input {
-			outline: none;
-		}
-		.menu {
-			overflow: hidden;
-		}
-		.menu ul {
-			width:100%;
-			border:1px solid #ddd;
-			height: 60px;
-			padding: 0 0 3px 0;
-			float: left;
-		}
-		.menu li {
-			list-style: none;
-			float: left;
-			width: 200px;
-			height: 60px;
-			text-align: center;
-			line-height: 60px;
-			font-size: 20px;
-			color:#777;
-		}
-		.border {
-			border-bottom: 3px solid #009966;
-			color:#009966;
-		}
-		.menu div {
-			width:80px;
-			height:30px;
-			border:1px solid #ddd;
-			text-align: center;
-			float: left;
-			line-height: 30px;
-			color:#777;
-			margin-top:15px;
-		}
-		.menu span,.start,.end,.select {
-			float: right;
-			height: 35px;
-			margin-top:15px;
-			line-height: 35px;
-			border-color: #ddd;
-			outline: none;
-		}
-		table {
-	    	table-layout : fixed ;
-	    	width:100%;
-	    	border-spacing: 0;
-	    	border-collapse:collapse;
-	    	padding:0;
-	    }
-		td {
-			padding: 0;
-			margin:0;
-			border: 1px solid #ddd;
-			width:10px;
-			height:25px;
-			overflow: hidden;
-			line-height: 25px;
-			text-align: center;
-		}
-		.table input {
-			border: none;
-		}
-		input.submit {
-			background: #CCCCCC;
-			border-radius: 3px;
-			width: 80px;
-			height: 30px
-		}
-		input.reset {
-			background: #CCCCCC;
-			border-radius: 3px;
-			width: 80px;
-			height: 30px
-		}
-		.space {
-			color:rgba(0,0,0,0);
-			position: relative;
-			top:1000000000px;
-		}
-		td.first {
-			width: 35px;
-		}
-		.last {
-			padding: 5px;
-			border:none;
-		}
-		.link {
-			text-decoration: none;
-			color: #777;
-			width: 200px;
-			height: 60px;
-			float: left;
-		}
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.content {
+	width: 1001px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	min-height: 900px;
+}
+
+.content input {
+	outline: none;
+}
+
+.menu {
+	margin-top: 30px;
+	overflow: hidden;
+}
+
+.menu ul {
+	width: 999px;
+	border: 1px solid #ddd;
+	height: 60px;
+	padding: 0 0 3px 0;
+	float: left;
+}
+
+.menu li {
+	list-style: none;
+	float: left;
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-size: 20px;
+	color: #777;
+}
+
+.border {
+	border-bottom: 3px solid #009966;
+	color: #009966;
+}
+
+.menu div {
+	width: 80px;
+	height: 30px;
+	border: 1px solid #ddd;
+	text-align: center;
+	float: left;
+	line-height: 30px;
+	color: #777;
+	margin-top: 15px;
+}
+
+.menu span,
+.start,
+.end,
+.select {
+	float: right;
+	height: 35px;
+	margin-top: 15px;
+	line-height: 35px;
+	border-color: #ddd;
+	outline: none;
+}
+
+span.special {
+	margin: 15px 150px 0 155px;
+	width: 15px;
+	height: 30px;
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+	padding: 0;
+}
+
+td {
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ddd;
+	width: 10px;
+	height: 25px;
+	overflow: hidden;
+	line-height: 25px;
+	text-align: center;
+}
+
+.table input {
+	border: none;
+}
+
+input.submit {
+	background: #CCCCCC;
+	border-radius: 3px;
+	width: 80px;
+	height: 30px
+}
+
+input.reset {
+	background: #CCCCCC;
+	border-radius: 3px;
+	width: 80px;
+	height: 30px
+}
+
+.space {
+	color: rgba(0, 0, 0, 0);
+	position: relative;
+	top: 1000000000px;
+}
+
+td.first {
+	width: 35px;
+}
+
+.last {
+	padding: 5px;
+	border: none;
+}
+
+.link {
+	text-decoration: none;
+	color: #777;
+	width: 200px;
+	height: 60px;
+	float: left;
+}
+
+.tr {
+	position: absolute;
+	top: 25px;
+	margin-bottom: 10px;
+}
+
+.td {
+	position: absolute;
+	width: 145px;
+	height: 30px;
+}
+
+.td input {
+	width: 145px;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.tdOne {
+	top: 136px;
+	right: 0px;
+}
+
+.tdTwo {
+	top: 136px;
+	right: 170px;
+}
