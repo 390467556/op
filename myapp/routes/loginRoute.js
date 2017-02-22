@@ -22,8 +22,10 @@ router.post('/', (req, res) => {
            if (!user) {
               res.render('login',{warn:"用户名或密码错误"});
            } else {
+               req.session.username = username;
                db.findDefaltSpiderDataForFormsWithUsername(username,function(error,data){
                    var result = JSON.stringify(data);
+                   console.log(result);
                    res.render('forms', {data: result});
                });
 

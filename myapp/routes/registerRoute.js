@@ -28,7 +28,9 @@ router.post('/', (req, res) => {
                     console.log("Failed to insert user, username is " + username + "\nerror is :" + err);
                     res.render('register', {warn: "网络忙，请重试"});
                 } else {
-                    console.log('render config')
+                    console.log('render config');
+                    req.session.username = username;
+                    console.log("register" + req.session.username);
                     res.render('config');
 
                 }
