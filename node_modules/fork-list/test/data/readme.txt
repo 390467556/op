@@ -1,0 +1,1 @@
+This directory is to save test data from multiple processes into one file.
