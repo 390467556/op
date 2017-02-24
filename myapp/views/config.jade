@@ -46,7 +46,7 @@ block content
                         td.firstt 单价
                         - for (var i = 0; i < 24; i++)
                             td
-                                input(type="text", name="value#{i}")
+                                input(type="text", name="value#{i}") #{i}
                     tr
                         td.last(colspan="25")
                             input.submit(type="submit", value="提交")
