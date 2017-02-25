@@ -31,7 +31,7 @@ function convertConfigModelToDBModel(uid, configModel) {
     const endTime = new Date(configModel.end);
     const startTimestamp = startTime.getTime();
     const endTimestamp = endTime.getTime();
-    const days = (endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000);
+    const days = ((endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000)) + 1;
     const tasks = [];
     const hours = [];
     for (let i = 0; i < 24; i += 1) {
@@ -40,16 +40,18 @@ function convertConfigModelToDBModel(uid, configModel) {
             hours.push(i);
         }
     }
+    const savedTime = new Date(configModel.start);
     for (let n = 0; n < days; n += 1) {
-        startTime.setDate(n);
+        savedTime.setDate(startTime.getDate() + n);
         for (let m = 0; m < hours.length; m += 1) {
-            startTime.setHours(hours[m]);
+            savedTime.setHours(hours[m]);
+            console.log(`date : ${savedTime}`);
             const task = {};
             task.platform_name = configModel.name;
             task.app_name = configModel.appname;
             task.account_name = configModel.appusrname;
             task.account_password = configModel.apppwd;
-            task.dt = startTime.getTime();
+            task.dt = savedTime.getTime();
             task.price = configModel[`value${hours[m]}`];
             task.uid = uid;
             tasks.push(task);
