@@ -205,41 +205,50 @@ dbmanager.updateTaskStatus = function(taskId, status,handler){
   });
 };
 
+function allDataTaskWithOriginTask(task) {
+    const allDataTask = {
+        uid: task.uid,
+        platform_name: task.platform_name,
+        account_name: task.account_name,
+        account_password: task.account_password,
+        app_name: task.app_name,
+        dt: task.dt,
+        price: task.price,
+        status: false,
+        task_id: dbmanager.createid(),
+    };
+    return allDataTask;
+}
+
+function noPriceTaskWithOriginTask(task) {
+    const noPriceTask = {
+        uid: task.uid,
+        platform_name: task.platform_name,
+        account_name: task.account_name,
+        account_password: task.account_password,
+        app_name: task.app_name,
+        dt: task.dt,
+    };
+    return noPriceTask;
+}
 // 批量插入任务数据
 dbmanager.saveTasks = function saveTasks(tasks, handler) {
-
     const noPriceTasks = [];
     const currentTasks = [];
     tasks.forEach((value, index, array) => {
-        const noPriceTask = value;
-        delete noPriceTask.price;
-        noPriceTasks.push(noPriceTask);
-
+        noPriceTasks.push(noPriceTaskWithOriginTask(value));
+        currentTasks.push(allDataTaskWithOriginTask(value));
     });
-    tasks.forEach((value, index, array) => {
-        const currentTask = value;
-        currentTask.status = false;
-        currentTask.task_id = dbmanager.createid();
-        currentTasks.push(currentTask);
-    });
-    console.log(`no : ${noPriceTasks}`);
-    console.log(`current : ${currentTasks}`);
+    console.log(`currentTasks : ${currentTasks.length}`);
     this.removeTasks(noPriceTasks, (error, data) => {
-        console.log(`remove error : ${error}`);
-        console.log(`remove data : ${data}`);
+        console.log(`remove : ${data}`);
         taskModel.collection.insert(currentTasks, handler);
     });
 };
 
-dbmanager.removeTasks = function removeTasks (tasks, handler) {
-    console.log(JSON.stringify(tasks));
-    taskModel.remove({ $or: tasks},handler);
-}
-
-
-
-
-
+dbmanager.removeTasks = function removeTasks(tasks, handler) {
+    taskModel.remove({ $or: tasks }, handler);
+};
 
 // 插入爬虫展示数据
 // accountid 用户平台账户 id
