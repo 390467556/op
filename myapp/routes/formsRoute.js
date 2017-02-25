@@ -3,14 +3,22 @@ var router = express.Router();
 var db = require('../db/dbmanager');
 
 router.get('/', (req, res) => {
-
-    var data = JSON.stringify(formData());
-    res.render('forms', {data: data});
-    // db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
-    //     var result = JSON.stringify(data);
-    //     console.log(result);
-    //     res.render('forms', {data: result});
-    // });
+    console.log(`formBody: ${JSON.stringify(req.query)}`);
+    // var data = JSON.stringify(formData());
+    // res.render('forms', {data: data});
+    if (!req.query) {
+        db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
+            var result = JSON.stringify(data);
+            // console.log(result);
+            res.render('forms', {data: result});
+        });
+    } else {
+        db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
+            var result = JSON.stringify(data);
+            // console.log(result);
+            res.render('forms', {data: result});
+        });
+    }
 });
 
 

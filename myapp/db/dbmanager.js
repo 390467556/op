@@ -304,7 +304,7 @@ dbmanager.findDefaltSpiderDataForFormsWithUid = function(uid,handler){
     var formData = {};
     var showData = {};
    spiderdataModel.findOne({"uid" : uid},function(error,spiderData){
-      console.log("spiderData" + spiderData);
+      // console.log("spiderData" + spiderData);
       if (!spiderData) {
         handler("error,do not have any data","do not have any data");
         return;
