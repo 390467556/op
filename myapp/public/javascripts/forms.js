@@ -2,7 +2,7 @@
  * @Author: zhumaohua 
  * @Date: 2017-02-19 20:02:15 
  * @Last Modified by: zhumaohua
- * @Last Modified time: 2017-02-22 21:55:58
+ * @Last Modified time: 2017-02-26 02:15:35
  * @Simple Description:  Javascript for forms page
  */
 
@@ -50,12 +50,12 @@ $(function () {
         },
 
         formatData: function () {
-            var tmp = new Array(this.days)
+            var tmp = []
             var dataStr
-            for (var i = this.days - 1; i >= 0; i--) {
-                dataStr = '<tr><td>' + moment(this.data['units'][i][0]['time']).format('YYYY-MM-DD') + '</td>'
-                for (var j = 0; j < 24; j++) {
-                    dataStr += '<td>' + this.data['units'][i][j][this.type] + '</td>'
+            for (var j = this.days - 1; j >= 0; j--) {
+                dataStr = '<tr><td>' + moment(this.data['units'][j][0]['time']).format('YYYY-MM-DD') + '</td>'
+                for (var i = 0; i < 24; i++) {
+                    dataStr += '<td>' + this.data['units'][j][i][this.type] + '</td>'
                 }
                 dataStr += '</tr>'
                 tmp.push(dataStr)
