@@ -15,12 +15,11 @@ router.post('/', (req, res) => {
 
         let tasks = convertConfigModelToDBModel(req.body);
         let taskNumber = 0;
-        tasks.forEach((value, index, array) => {
-            saveTask(user.uid, value, (error,task) => {
-          });
-          const data = req.body;
-          data.msg = '提交成功';
-          res.render('config', data);
+          db.saveTasks(tasks, (error, data) => {
+            const data = req.body;
+            data.msg = '提交成功';
+            res.render('config', data);
+          })  
       });
     });
 });
