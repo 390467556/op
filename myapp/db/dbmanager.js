@@ -26,7 +26,7 @@ function dbUserWithParameters (name,pwd,userId) {
 // 任务 task
 
 var taskSchema  = new mongoose.Schema({
-        task_id :{type : String},
+        task_id :{type : String },
         uid :{type : String},
         platform_name : {type : String},
         account_name :{type : String},
@@ -148,29 +148,34 @@ dbmanager.findOneUserWithUsername = function (username,handler) {
   }
 };
 
+function taskFilterWithParameters(userid, platformName, accountName,
+  accountPassword, appName, dateTime) {
+    const filter = {
+        uid: userid,
+        platform_name: platformName,
+        account_name: accountName,
+        account_password: accountPassword,
+        app_name: appName,
+        dt: dateTime,
+    };
+    return filter;
+}
 
 // 插入 task 数据
-dbmanager.insertTask = function (userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta,handler) {
-     var filter = {
-        "uid":userid,
-        "platform_name" : platformName,
-        "account_name" : accountName,
-        "account_password" : accountPassword,
-        "app_name" : appName,
-        "dt" : dateTime,
-        "price" : settingPrice,
-     };
-     var task_id = this.createid();
-     this.findOneTask(filter,function(error,result){
-          if (!result) {
-            var task = Task(task_id,userid,platformName,accountName,accountPassword,appName,dateTime,settingPrice,sta);
-            task.save(handler);
-          } else {
-            result.price = settingPrice;
-            result.save(handler);
-          }
-     });
+dbmanager.insertTask = function insertTask(userid, platformName,
+  accountName, accountPassword, appName, dateTime, settingPrice, handler) {
+    const filter = taskFilterWithParameters(userid, platformName, accountName,
+      accountPassword, appName, dateTime);
+    const update = { price: settingPrice };
+    this.findOneTaskAndUpdate(filter, update, handler);
 };
+
+dbmanager.findOneTaskAndUpdate = function findOneTaskAndUpdate(filter, update, handler) {
+    const updateAndInsertData = update;
+    updateAndInsertData.$setOnInsert = { task_id: this.createid(), status: false };
+    taskModel.findOneAndUpdate(filter, update, { upsert: true, new: true }, handler);
+};
+
 //查询一个 task 数据
 dbmanager.findOneTask = function (filter,handler) {
      if (!filter) {
@@ -199,6 +204,40 @@ dbmanager.updateTaskStatus = function(taskId, status,handler){
        }
   });
 };
+
+// 批量插入任务数据
+dbmanager.saveTasks = function saveTasks(tasks, handler) {
+
+    const noPriceTasks = [];
+    const currentTasks = [];
+    tasks.forEach((value, index, array) => {
+        const noPriceTask = value;
+        delete noPriceTask.price;
+        noPriceTasks.push(noPriceTask);
+
+    });
+    tasks.forEach((value, index, array) => {
+        const currentTask = value;
+        currentTask.status = false;
+        currentTask.task_id = dbmanager.createid();
+        currentTasks.push(currentTask);
+    });
+    console.log(`no : ${noPriceTasks}`);
+    console.log(`current : ${currentTasks}`);
+    this.removeTasks(noPriceTasks, (error, data) => {
+        console.log(`remove error : ${error}`);
+        console.log(`remove data : ${data}`);
+        taskModel.collection.insert(currentTasks, handler);
+    });
+};
+
+dbmanager.removeTasks = function removeTasks (tasks, handler) {
+    taskModel.remove({ $or: tasks},handler);
+}
+
+
+
+
 
 
 // 插入爬虫展示数据
