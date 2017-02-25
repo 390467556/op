@@ -11,9 +11,8 @@
 			$(".menu li").click(function(){
 				$(this).addClass("border").siblings().removeClass("border");
 			});
-			$( ".date" ).datepicker();
 			$( ".start" ).datepicker({
-             defaultDate: "+1w",
+             defaultDate: "+0D",
              changeMonth: true,
              numberOfMonths: 2,
              onClose: function( selectedDate ) {
@@ -21,7 +20,7 @@
             }
            });
            $( ".end" ).datepicker({
-            defaultDate: "+1w",
+            defaultDate: "+0D",
             changeMonth: true,
             numberOfMonths: 2,
             onClose: function( selectedDate ) {
@@ -138,6 +137,9 @@
 			<input class = "submit other" type="submit" style="float:right;">
 			<input type="text" class="end" name="end" style="border:1px solid #ddd;"><span>to</span>
 			<input type="text" class="start" name="start" style="border:1px solid #ddd;">
+			<span><input type="radio" name="time">过去30天</span>
+			<span><input type="radio" name="time">过去7天</span>
+			<span><input type="radio" name="time">今日</span>
 			</form>
 			<select class="selectOne special">
 			 <option>小时消耗表</option>
