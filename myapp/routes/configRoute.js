@@ -15,13 +15,13 @@ router.post('/', (req, res) => {
 
         let tasks = convertConfigModelToDBModel(req.body);
         let taskNumber = 0;
-          db.saveTasks(tasks, (error, data) => {
-            const configData = req.body;
+          db.saveTasks(tasks, (error, taskResult) => {
+            const data = req.body;
             data.msg = '提交成功';
             res.render('config', data);
-          })  
+          })
       });
-    });
+  });
 
 function convertConfigModelToDBModel(configModel) {
     let startTime = new Date(configModel.start);

@@ -232,6 +232,7 @@ dbmanager.saveTasks = function saveTasks(tasks, handler) {
 };
 
 dbmanager.removeTasks = function removeTasks (tasks, handler) {
+    console.log(JSON.stringify(tasks));
     taskModel.remove({ $or: tasks},handler);
 }
 
