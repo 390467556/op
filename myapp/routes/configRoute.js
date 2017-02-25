@@ -45,7 +45,7 @@ function convertConfigModelToDBModel(uid, configModel) {
         savedTime.setDate(startTime.getDate() + n);
         for (let m = 0; m < hours.length; m += 1) {
             savedTime.setHours(hours[m]);
-            console.log(`date : ${savedTime}`);
+            // console.log(`date : ${savedTime}`);
             const task = {};
             task.platform_name = configModel.name;
             task.app_name = configModel.appname;
