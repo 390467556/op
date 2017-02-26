@@ -434,28 +434,24 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
          var unit;
          if (resultSpider) {
 
-            unit = {"time" : resultSpider.dt,
+             unit = {"time" : resultSpider.dt,
                       "price":resultSpider.price,
                       "hourUse":resultSpider.hourUse,
                       "ctr":resultSpider.ctr};
-           dayArray.push(unit);
-         }else {
-            unit = {"time" : currentTimestamp,
+             dayArray.push(unit);
+         } else {
+             unit = {"time" : currentTimestamp,
                       "price":0,
                       "hourUse":0,
                       "ctr":0};
-           dayArray.push(unit);
+             dayArray.push(unit);
          }
-     }
-     result.push(dayArray);
+      }
+      result.push(dayArray);
   }
     // console.log(result);
-  return result;
+    return result;
 }
-
-
-
-
 
 /* 其它方法 */
 dbmanager.promiseFindUser = function(username,handler){
