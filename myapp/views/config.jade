@@ -19,17 +19,7 @@ block content
                 a.link(href="javascript: void(0)")
                     li.border 设置页面
                 a.link(href="/forms")
-                    li 报表页面
-            span.special to       
-            span 
-                input(type="radio", name="time", value="30")
-                | 过去30天
-            span 
-                input(type="radio", name="time", value="7")
-                | 过去7天
-            span 
-                input(type="radio", name="time", value="3")
-                | 今天
+                    li 报表页面  
             
             select.select
                 option 全部应用
@@ -52,21 +42,22 @@ block content
                                     input(type="text", name="value#{i}") 
                     tr
                         td.last(colspan="25")
-                            input.submit(type="submit", value="提交")
+                            input.hidden#realSubmit(type="submit", value="提交")
+                            input.submit#submitButton(type="button", value="提交")
                             i.space 空格
                             input.reset(type="reset", value="重置")
                     tr.tr
                         td
-                            input(type="text", name="name", placeholder="平台名称")
+                            input.nonEmpty#platName(type="text", name="name", placeholder="平台名称")
                         td
-                            input(type="text", name="appusrname", placeholder="平台账号")
+                            input.nonEmpty#platUser(type="text", name="appusrname", placeholder="平台账号")
                         td
-                            input(type="text", name="apppwd", placeholder="平台密码")
+                            input.nonEmpty#platPwd(type="text", name="apppwd", placeholder="平台密码")
                         td
-                            input(type="text", name="appname", placeholder="app名称")
+                            input.nonEmpty#appName(type="text", name="appname", placeholder="app名称")
                     
                     tr
                         td.td.tdOne
-                            input(type="text", class="end", name="end")
+                            input.nonEmpty#end(type="text", class="end", name="end")
                         td.td.tdTwo
-                            input(type="text", class="start", name="start")
+                            input.nonEmpty#start(type="text", class="start", name="start")
