@@ -1,5 +1,6 @@
 const express = require('express');
-const db = require('../db/dbmanager')
+const db = require('../db/dbmanager');
+const timeManager = require('../../lib/timerManager');
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.post('/', (req, res) => {
                 const body = req.body;
                 body.msg = '提交成功';
                 res.render('config', body);
+                timeManager.startPrestTimers(taskIdsFromTasks(taskResult));
             }
         });
     });
@@ -58,6 +60,15 @@ function convertConfigModelToDBModel(uid, configModel) {
         }
     }
     return tasks;
+}
+
+function taskIdsFromTasks(tasks) {
+    const taskIds = [];
+    tasks.forEach((value, index, array) => {
+        taskIds.push(value.task_id);
+    });
+    console.log(`taskIds : ${taskIds}`);
+    return taskIds;
 }
 
 // function saveTask(uid, task, handler) {
