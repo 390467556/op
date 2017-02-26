@@ -168,3 +168,7 @@ td.first {
 	top: 106px;
 	right: 170px;
 }
+
+.hidden {
+	display: none;
+}

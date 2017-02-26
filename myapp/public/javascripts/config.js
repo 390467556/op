@@ -20,5 +20,25 @@ $(function () {
         }
     })
 
-    
+
+    function msgHelper (msg) {
+        return '请输入' + msg
+    }
+
+    var msgMap = {
+        name: msgHelper('平台名称'),
+        appusrname: msgHelper('平台用户名'),
+        apppwd: msgHelper('用户名密码'),
+        appname: msgHelper('app名称'),
+        end: msgHelper('终止时间'),
+        start: msgHelper('开始时间')
+    }
+    $('#submitButton').on('click', function () {
+        $('.nonEmpty').each(function () {
+            var $this = $(this)
+            if (!$this.val()) {
+                alert(msgMap[$this.val()])
+            }
+        })
+    })
 })
