@@ -8,16 +8,22 @@ router.get('/', (req, res) => {
     // res.render('forms', {data: data});
     if (!req.query) {
         db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
-            var result = JSON.stringify(data);
+            const result = JSON.stringify(data);
             // console.log(result);
-            res.render('forms', {data: result});
+            res.render('forms', { data: result });
         });
     } else {
-        db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
-            var result = JSON.stringify(data);
-            // console.log(result);
-            res.render('forms', {data: result});
-        });
+        // db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
+        //     var result = JSON.stringify(data);
+        //     // console.log(result);
+        //     res.render('forms', {data: result});
+        // });
+        db.findSpiderDataForForms(req.session.username, req.query.start, req.query.end,
+          (error, data) => {
+              const result = JSON.stringify(data);
+               console.log(`result : ${result}`);
+              res.render('forms', { data: result });
+          });
     }
 });
 

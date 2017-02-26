@@ -282,6 +282,41 @@ dbmanager.createid  = function() {
    return mongoose.Types.ObjectId().toString();
 };
 
+dbmanager.findSpiderDataForForms = function findSpiderDataForForms(username, start, end, handler) {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    endDate.setDate(endDate.getDate() + 1);
+    const formData = {};
+    const showData = {};
+    const days = ((endDate.getTime() - startDate.getTime()) / (60 * 60 * 24 * 1000)) ;
+    this.findOneUserWithUsername(username, (error, user) => {
+        if (!user) {
+            handler('error,user is not exist', 'error,user is not exist');
+            return;
+        }
+        spiderdataModel.findOne({ uid: user.uid }, (err, spiderData) => {
+            if (!spiderData) {
+                handler('error,do not have any data', 'do not have any data');
+                return;
+            }
+            const appName = spiderData.app_name;
+            if (!appName) {
+                handler('error,do not have any app', 'do not have any app');
+                return;
+            }
+            formData.n = days;
+            showData.appName = appName;
+            spiderdataModel.find({ uid: spiderData.uid,
+                dt: { $gte: startDate.getTime(), $lt: endDate.getTime() } }, (findError, data) => {
+                const units = convertSpiderDataToFormsData(startDate, endDate, data);
+                showData.units = units;
+                formData.showData = showData;
+                handler(error, formData);
+            });
+        });
+    });
+};
+
 
 dbmanager.findDefaltSpiderDataForFormsWithUsername = function(username,handler){
     this.findOneUserWithUsername(username,function(error,user){
@@ -337,7 +372,8 @@ dbmanager.findDefaltSpiderDataForFormsWithUid = function(uid,handler){
       // console.log(timestampBefore);
       // console.log(timeStampAfter);
 
-      spiderdataModel.find({"uid" : spiderData.uid,"dt":{"$gte":timestampBefore,"$lt":timeStampAfter}},function(error,data){
+       spiderdataModel.find({ uid: spiderData.uid,
+           dt: { $gte: timestampBefore, $lt: timeStampAfter }},function(error,data){
 
           var units = convertSpiderDataToFormsData(theDayBeforeYestoday,tomorrow,data);
           showData.units = units;
@@ -385,8 +421,8 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
   // console.log("start " +  startTimestamp);
   // console.log("end  " +  endTimestamp);
 
-  var days = (endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000);
-  // console.log(days);
+  var days = (endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000) ;
+  console.log(`11111 days : ${days}`);
   var currentTimestamp = startTimestamp;
   var timeStampArray = [];
   var result = [];

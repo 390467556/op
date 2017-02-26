@@ -25,7 +25,6 @@ router.post('/', (req, res) => {
                req.session.username = username;
                db.findDefaltSpiderDataForFormsWithUsername(username,function(error,data){
                    var result = JSON.stringify(data);
-                   console.log(result);
                    res.render('forms', {data: result});
                });
 
