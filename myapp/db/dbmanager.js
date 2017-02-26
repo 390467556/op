@@ -480,7 +480,7 @@ dbmanager.findPlatformAccountsWithUsername = function(username,handler) {
     }
 };
 
-dbmanager.findTaskWithId = function(taskid,handler){
+dbmanager.findTasksWithId = function(taskid,handler){
 
   if (!taskid) {
       handler("error","taskid is null");
