@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
         db.findSpiderDataForForms(req.session.username, req.query.start, req.query.end,
           (error, data) => {
               const result = JSON.stringify(data);
-               console.log(`result : ${result}`);
               res.render('forms', { data: result });
           });
     }

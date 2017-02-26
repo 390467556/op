@@ -239,9 +239,7 @@ dbmanager.saveTasks = function saveTasks(tasks, handler) {
         noPriceTasks.push(noPriceTaskWithOriginTask(value));
         currentTasks.push(allDataTaskWithOriginTask(value));
     });
-    console.log(`currentTasks : ${currentTasks.length}`);
     this.removeTasks(noPriceTasks, (error, data) => {
-        console.log(`remove : ${data}`);
         taskModel.collection.insert(currentTasks, handler);
     });
 };
@@ -422,7 +420,6 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
   // console.log("end  " +  endTimestamp);
 
   var days = (endTimestamp - startTimestamp) / (60 * 60 * 24 * 1000) ;
-  console.log(`11111 days : ${days}`);
   var currentTimestamp = startTimestamp;
   var timeStampArray = [];
   var result = [];
