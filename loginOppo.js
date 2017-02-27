@@ -18,11 +18,12 @@ var config = require('./config');
 
 casper.options.waitTimeout = 30000;
 var args = casper.cli.args;
-var action = args[0];
-var dir = args[1];
-var username = args[2];
-var password = args[3];
-var price = args[4];
+var data = JSON.parse(args);
+var action = data.action;
+var dir = data.dir;
+var username = data.account_username;
+var password = data.account_password;
+var price = data.price;
 
 console.log("dir=" + dir);
 console.log("action=", action);

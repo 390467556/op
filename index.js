@@ -9,12 +9,12 @@ var config = require('./config');
 var captcha = require('./captcha');
 var distribute = require('./distribute');
 var form = require('./form');
-var dbmanager = require('../myapp/db/dbmanager');
+var dbmanager = require('./myapp/db/dbmanager');
 var EventEmitter = require('events').EventEmitter;
 module.exports = new EventEmitter();
-var dbmanager = require('../myapp/db/dbmanager');
-dbmanager.connect();
+// dbmanager.connect();
 
+// process.chdir('lib');
 
 /**
  * [login 对外提供入口，爬虫或者预设置，都需要登录]
@@ -88,13 +88,13 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
     fs.mkdirSync(dir, 0777);
     var data = {'action':arg1,'dir':dir,'account_username':account_username,'account_password':account_password,'price':price};
     console.log(JSON.stringify(data));
-    console.log(data.account_username);
     var jsName;
     if(platform_name === "oppo"){
         jsName = 'loginOppo.js';
     } else if(platform_name === "eoppo"){
         jsName = 'loginEoppo.js';
     }
+    console.log('jsName:' + jsName);
     var ls = spawn('casperjs', [jsName, JSON.stringify(data)]);
     ls.on('close', function(code) {
         if (code == 1) {

@@ -3,7 +3,7 @@ var cron = require('node-schedule');
 var index = require('./index');
 var index1 = require('./index');
 var Forks = require('fork-list');
-var dbmanager = require('../myapp/db/dbmanager');
+var dbmanager = require('./myapp/db/dbmanager');
 dbmanager.connect();
 
 Forks.proc(function(data1, data2) {

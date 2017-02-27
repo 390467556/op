@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../db/dbmanager');
-const timeManager = require('../../lib/timerManager');
+const timeManager = require('../../timerManager');
 
 const router = express.Router();
 

@@ -2,13 +2,14 @@
  * [timerManager 设置任务的管理类]
  */
 var ForkList = require('fork-list');
-var path = '../lib/scheduleTimer';
+var path = './scheduleTimer';
 var num = 3;
 var forks = new ForkList({
     path: path,
     num: num,
     log: true
 });
+
 
 
 /**
