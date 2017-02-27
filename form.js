@@ -11,8 +11,7 @@ exports.getDistribute = function(cookie) {
 
 function getForm() {
 
-    casper.start(config.oppoUrl.distribute, function() {
-    });
+    casper.start(config.oppoUrl.distribute, function() {});
     casper.then(function() {
         var ids = this.getElementsAttribute('tr[class="tolist"]', 'id');
         for (var i = 0; i < ids.length; i++) {
@@ -50,8 +49,18 @@ function printForm(id) {
     var price = casper.fetchText(x(price_x_path_string));
     var status = casper.fetchText(x(status_x_path_string));
 
-    var st = {id:id,ad_name:ad_name.trim(),app_name:app_name.trim(),exposure_num:exposure_num.trim(),download_num:download_num.trim(),download_rate:download_rate.trim(),use_num:use_num.trim(),price:price.trim()};
-// var st = "{" + "exposure_num:" + "\'" + exposure_num + "\'" + "}";
+    var st = {
+        id: id,
+        ad_name: ad_name.trim(),
+        app_name: app_name.trim(),
+        exposure_num: exposure_num.trim(),
+        download_num: download_num.trim(),
+        download_rate: download_rate.trim(),
+        daybudget: daybudget.trim(),
+        use_num: use_num.trim(),
+        price: price.trim()
+    };
+    // var st = "{" + "exposure_num:" + "\'" + exposure_num + "\'" + "}";
 
     console.log(JSON.stringify(st));
     // console.log(st);
@@ -69,7 +78,7 @@ function printForm(id) {
 
 
 String.prototype.trim = function() {
-    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(",","");
+    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(",", "");
 };
 
 // casper.run();

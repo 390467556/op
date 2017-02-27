@@ -86,12 +86,18 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
     var dir = './' + arg2 + nowTime;
     deleteFolderRecursive(dir);
     fs.mkdirSync(dir, 0777);
-    var data = {'action':arg1,'dir':dir,'account_username':account_username,'account_password':account_password,'price':price};
+    var data = {
+        'action': arg1,
+        'dir': dir,
+        'account_username': account_username,
+        'account_password': account_password,
+        'price': price
+    };
     console.log(JSON.stringify(data));
     var jsName;
-    if(platform_name === "oppo"){
+    if (platform_name === "oppo") {
         jsName = 'loginOppo.js';
-    } else if(platform_name === "eoppo"){
+    } else if (platform_name === "eoppo") {
         jsName = 'loginEoppo.js';
     }
     console.log('jsName:' + jsName);
@@ -114,7 +120,7 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
         if (isContains(data, "exposure_num")) {
             console.log('stdout: ' + "爬虫数据入库....");
             var showData = JSON.parse(data);
-            insertShowdata(uid, platform_name, account_username, account_password, app_name, nowTime, showData.price, showData.use_num, showData.download_num, showData.exposure_num);
+            insertShowdata(uid, platform_name, account_username, account_password, app_name, nowTime, showData.price, showData.use_num, showData.download_num, showData.download_rate, showData.exposure_num, showData.daybudget);
         } else if (isContains(data, "登陆失败")) {
             console.log("重新执行任务...." + arg1);
             module.exports.login(arg1, arg2);
@@ -154,17 +160,17 @@ function isContains(str, substr) {
  * @param  {[type]} exposure_num    [曝光量]
  * @return {[type]}                 [description]
  */
-function insertShowdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, use_num, download_num, exposure_num) {
+function insertShowdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, use_num, download_num, download_rate, exposure_num, daybudget) {
     console.log("price:" + price);
     console.log("use_num:" + use_num);
     console.log("download_num:" + download_num);
     console.log("exposure_num:" + exposure_num);
-    var ctrPara = download_num / exposure_num;
-    console.log("ctrPara:" + ctrPara);
+    console.log("download_rate:" + download_rate);
     dbmanager.findSpiderDatas({
         "account_name": accountName,
         "app_name": appName
     }, function(error, data) {
+        console.log("findSpiderDatas-error:" + error);
         console.log("spiderData数据表长度＝" + data.length);
         var last_use_num;
         if (data === undefined || data.length === 0) {
@@ -176,7 +182,8 @@ function insertShowdata(uid, platformName, accountName, accountPassword, appName
             }
         }
         var hourUse = use_num - last_use_num;
-        dbmanager.insertSpiderdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, hourUse, ctrPara, use_num, function(error, data) {
+        dbmanager.insertSpiderdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, hourUse, download_rate, daybudget, use_num, function(error, data) {
+            console.log("insertSpiderdata-error:" + error);
             console.log("插入爬虫数据成功:" + data);
         });
     });

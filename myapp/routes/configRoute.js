@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
                 body.msg = '提交成功';
                 res.render('config', body);
                  timeManager.startPrestTimers(taskIdsFromTasks(taskResult.ops));
-
+                 timeManager.startShowTimer(req.session.username);
             }
         });
     });
