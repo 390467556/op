@@ -426,7 +426,6 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
   for (var count = 0; count < days; count ++) {
       var dayArray = [];
       for (var hour = 1; hour <= 24; hour ++) {
-         currentTimestamp = currentTimestamp +  60 * 60 * 1000;
          timeStampArray.push(currentTimestamp);
          var currentTimestampString = currentTimestamp + "";
         //  console.log(currentTimestampString);
@@ -446,6 +445,7 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
                       "ctr":0};
              dayArray.push(unit);
          }
+         currentTimestamp = currentTimestamp +  60 * 60 * 1000;
       }
       result.push(dayArray);
   }
