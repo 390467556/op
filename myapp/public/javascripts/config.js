@@ -34,11 +34,14 @@ $(function () {
         start: msgHelper('开始时间')
     }
     $('#submitButton').on('click', function () {
+        var allRight = true
         $('.nonEmpty').each(function () {
             var $this = $(this)
             if (!$this.val()) {
-                alert(msgMap[$this.val()])
+                allRight = false
+                alert(msgMap[$this.attr('name')])
             }
         })
+        allRight && $('#realSubmit').click()
     })
 })
