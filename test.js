@@ -1,4 +1,4 @@
-var dbmanager = require('../../db/dbmanager');
+var dbmanager = require('./myapp/db/dbmanager');
 var fs = require('fs');
 var config = require('./config');
 var timerManager = require('./timerManager');
@@ -36,18 +36,18 @@ var uid;
 
 
 dbmanager.findUsers({
-    "username": 'wangzhe1'
+    "username": 'wangzhe'
 }, function(error, data) {
     uid = data[0].uid;
     dbmanager.findOneTask({
         "uid": uid
     }, function(error, data) {
         // if (data === undefined || data === null) {
-        dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime, 6.4, function(error, data) {
+        dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime, 6.6, function(error, data) {
             console.log("插入设置出价task:" + data);
             console.log("task:" + data.task_id);
             // timerManager.startPrestTimer(data.task_id);
-            dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime + 20000, 6.4, function(error, data) {
+            dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime + 20000, 6.3, function(error, data) {
                 console.log("插入设置出价task:" + data);
                 console.log("task:" + data.task_id);
                 // timerManager.startPrestTimer(data.task_id);

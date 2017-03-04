@@ -64,7 +64,7 @@ casper.then(function() {
 
 
 casper.then(function() {
-    this.wait(1000, function() {
+    this.wait(2000, function() {
         // fs.touch(dir + "/result.txt");
         if (this.exists('#auth_code')) {
             // fs.write(dir + '/result.txt', 'fail');

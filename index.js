@@ -108,7 +108,6 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
             console.log('child process结束。目标:');
             if (arg1 === 1) {
                 console.log("预设置脚本结束");
-                node_modules.emit('fail');
             } else if (arg1 === 2) {
                 console.log("爬虫脚本结束");
             }
@@ -173,7 +172,7 @@ function insertShowdata(uid, platformName, accountName, accountPassword, appName
         console.log("findSpiderDatas-error:" + error);
         console.log("spiderData数据表长度＝" + data.length);
         var last_use_num;
-        if (data === undefined || data.length === 0) {
+        if (data === undefined || data.length === 0 || use_num === 0) {
             last_use_num = use_num;
         } else {
             last_use_num = data[data.length - 1].use_num;

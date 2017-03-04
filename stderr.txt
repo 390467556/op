@@ -1,0 +1,153 @@
+(node:32753) DeprecationWarning: fs.read's legacy String interface is deprecated. Use the Buffer API as mentioned in the documentation instead.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32753) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: fs.read's legacy String interface is deprecated. Use the Buffer API as mentioned in the documentation instead.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead: http://mongoosejs.com/docs/promises.html
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+(node:32751) DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+/home/wangzhe/op/captcha.js:35
+                    console.log('Error:', result.message);
+                                          ^
+
+ReferenceError: result is not defined
+    at Request.<anonymous> (/home/wangzhe/op/captcha.js:35:43)
+    at emitTwo (events.js:106:13)
+    at Request.emit (events.js:191:7)
+    at Request._fireError (/home/wangzhe/op/node_modules/restler/lib/restler.js:207:10)
+    at ClientRequest.<anonymous> (/home/wangzhe/op/node_modules/restler/lib/restler.js:246:14)
+    at emitOne (events.js:96:13)
+    at ClientRequest.emit (events.js:188:7)
+    at Socket.socketErrorListener (_http_client.js:309:9)
+    at emitOne (events.js:96:13)
+    at Socket.emit (events.js:188:7)
+    at connectErrorNT (net.js:1025:8)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)

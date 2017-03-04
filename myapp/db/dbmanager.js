@@ -64,7 +64,7 @@ var spiderdataSchema  = new mongoose.Schema({
         dt:Number,
         price:Number,
         hourUse : Number,
-        ctr : Number,
+        ctr : {type : String},
         dayBudget:Number,
         use_num :Number,
 });
@@ -426,10 +426,15 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
   for (var count = 0; count < days; count ++) {
       var dayArray = [];
       for (var hour = 1; hour <= 24; hour ++) {
+         //currentTimestamp = currentTimestamp +  60 * 60 * 1000;
          timeStampArray.push(currentTimestamp);
          var currentTimestampString = currentTimestamp + "";
-        //  console.log(currentTimestampString);
+        // console.log(`timestamp : ${currentTimestampString}`);
+       //  console.log(`timestamp data : ${dateSpider[currentTimestamp]}`);
+      //   console.log(`timestamp data : ${JSON.stringify(dateSpider)}`);
          var resultSpider =  dateSpider[currentTimestampString];
+
+         console.log(`result data : ${JSON.stringify(resultSpider)}`);
          var unit;
          if (resultSpider) {
 
@@ -442,7 +447,7 @@ function convertSpiderDataToFormsData(startDate,endDate,spiderArray){
              unit = {"time" : currentTimestamp,
                       "price":0,
                       "hourUse":0,
-                      "ctr":0};
+                      "ctr":"0"};
              dayArray.push(unit);
          }
          currentTimestamp = currentTimestamp +  60 * 60 * 1000;

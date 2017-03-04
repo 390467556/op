@@ -6,6 +6,7 @@ var casper = require('casper').create({
     verbose: true,
     logLevel: 'debug',
     stepTimeout: 30000,
+    viewportSize:{width:1440,height:900},
     onWaitTimeout: function() {
         console.log('-----output-----timeout-----output end-----', 'Info');
     }
@@ -15,7 +16,10 @@ var system = require("system");
 var distribute = require('./distribute');
 var form = require('./form');
 var config = require('./config');
-
+casper.options.viewportSize = {
+    width: 1440,
+    height: 900
+};
 casper.options.waitTimeout = 30000;
 var args = casper.cli.args;
 var data = JSON.parse(args);
@@ -60,13 +64,19 @@ casper.then(function() {
     this.echo('提交...');
 });
 
+/*
+casper.then(function(){
+  this.wait(2000,function(){
+	this.capture(dir + '/login.jpg');
+});
+});
+*/
 
 casper.then(function() {
-    this.wait(1000, function() {
+    this.wait(2000, function() {
         // fs.touch(dir + "/result.txt");
         if (this.exists('#yw0')) {
             // fs.write(dir + '/result.txt', 'fail');
-            this.bypass(2);
             console.log("登陆失败");
         } else {
 
@@ -88,5 +98,6 @@ casper.then(function() {
         }
     });
 });
+
 
 casper.run();
