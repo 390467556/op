@@ -39,31 +39,34 @@ dbmanager.findUsers({
     "username": 'wangzhe'
 }, function(error, data) {
     uid = data[0].uid;
+    console.log(data);
+    timerManager.startShowTimer(data[0].username);
     dbmanager.findOneTask({
         "uid": uid
     }, function(error, data) {
-        // if (data === undefined || data === null) {
-        dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime, 6.6, function(error, data) {
-            console.log("插入设置出价task:" + data);
-            console.log("task:" + data.task_id);
-            // timerManager.startPrestTimer(data.task_id);
 
-            console.log("插入设置出价task:" + data);
-            console.log("task:" + data.task_id);
-            // timerManager.startPrestTimer(data.task_id);
-            dbmanager.findTask({
-                'uid': uid
-            }, function(error, data) {
-                console.log("task length = " + data.length);
-                var taskids = new Array(2);
-                for (var i = 0; i < data.length; i++) {
-                    console.log("taskid = " + data[i].task_id);
-                    taskids[i] = data[i].task_id;
-                }
-                console.log("taskids=" + taskids);
-                timerManager.startPrestTimers(taskids);
-            });
-        });
+        // if (data === undefined || data === null) {
+        // dbmanager.insertTask(uid, "oppo", "wwmeng@tudou.com", "Ifeng888!", "来疯直播", nowTime, 6.6, function(error, data) {
+        //     console.log("插入设置出价task:" + data);
+        //     console.log("task:" + data.task_id);
+        //     // timerManager.startPrestTimer(data.task_id);
+        //
+        //     console.log("插入设置出价task:" + data);
+        //     console.log("task:" + data.task_id);
+        //     // timerManager.startPrestTimer(data.task_id);
+        //     dbmanager.findTask({
+        //         'uid': uid
+        //     }, function(error, data) {
+        //         console.log("task length = " + data.length);
+        //         var taskids = new Array(2);
+        //         for (var i = 0; i < data.length; i++) {
+        //             console.log("taskid = " + data[i].task_id);
+        //             taskids[i] = data[i].task_id;
+        //         }
+        //         console.log("taskids=" + taskids);
+        //         timerManager.startPrestTimers(taskids);
+        //     });
+        // });
         // });
     });
 

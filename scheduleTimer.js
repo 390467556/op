@@ -31,9 +31,9 @@ function scheduleShow(arg) {
     }
 
     var rule = new cron.RecurrenceRule();
-    rule.minute = 0;
+    rule.minute = 57;
     cron.scheduleJob(rule, function() {
-        console.log(new Date(), "定时任务开始--[每分钟执行]--爬虫");
+        console.log("定时任务开始--[每小事执行]--爬虫" + new Date().toLocaleString());
         index.login(2, arg);
         // forks.send(2, arg);
     });

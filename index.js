@@ -92,7 +92,7 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
         'account_username': account_username,
         'account_password': account_password,
         'price': price,
-        'app_name':app_name
+        'app_name': app_name
     };
     console.log(JSON.stringify(data));
     var jsName;
@@ -118,9 +118,9 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
     ls.stdout.on('data', function(data) {
         console.log('stdout: ' + data);
         if (isContains(data, "exposure_num")) {
-            console.log('stdout: ' + "爬虫数据入库....");
+            console.log('stdout: ' + "爬虫成功....");
             var showData = JSON.parse(data);
-            insertShowdata(uid, platform_name, account_username, account_password, app_name, nowTime, showData.price, showData.use_num, showData.download_num, showData.download_rate, showData.exposure_num, showData.daybudget);
+            insertShowdata(uid, platform_name, account_username, account_password, app_name, showData.price, showData.use_num, showData.download_num, showData.download_rate, showData.exposure_num, showData.daybudget);
         } else if (isContains(data, "登陆失败")) {
             console.log("重新执行任务...." + arg1);
             module.exports.login(arg1, arg2);
@@ -160,7 +160,8 @@ function isContains(str, substr) {
  * @param  {[type]} exposure_num    [曝光量]
  * @return {[type]}                 [description]
  */
-function insertShowdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, use_num, download_num, download_rate, exposure_num, daybudget) {
+function insertShowdata(uid, platformName, accountName, accountPassword, appName, price, use_num, download_num, download_rate, exposure_num, daybudget) {
+    var nowTime = new Date();
     console.log("price:" + price);
     console.log("use_num:" + use_num);
     console.log("download_num:" + download_num);
@@ -181,8 +182,20 @@ function insertShowdata(uid, platformName, accountName, accountPassword, appName
                 last_use_num = use_num;
             }
         }
-        var hourUse = use_num - last_use_num;
-        dbmanager.insertSpiderdata(uid, platformName, accountName, accountPassword, appName, nowTime, price, hourUse, download_rate, daybudget, use_num, function(error, data) {
+        var hourUse;
+        if (nowTime.getHours() === 0) {
+            hourUse = use_num;
+        } else {
+            hourUse = use_num - last_use_num;
+        }
+        var hour = nowTime.getHours() + 1;
+        if (hour === 24){
+          hour = 0;
+        }
+        nowTime.setMinutes(0);
+        nowTime.setHours(hour);
+
+        dbmanager.insertSpiderdata(uid, platformName, accountName, accountPassword, appName, nowTime.getTime(), price, hourUse, download_rate, daybudget, use_num, function(error, data) {
             console.log("insertSpiderdata-error:" + error);
             console.log("插入爬虫数据成功:" + data);
         });
