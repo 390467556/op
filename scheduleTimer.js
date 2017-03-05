@@ -31,7 +31,7 @@ function scheduleShow(arg) {
     }
 
     var rule = new cron.RecurrenceRule();
-    rule.minute = 40;
+    rule.minute = 0;
     cron.scheduleJob(rule, function() {
         console.log(new Date(), "定时任务开始--[每分钟执行]--爬虫");
         index.login(2, arg);
@@ -79,8 +79,9 @@ function schedulePreset(arg, data) {
     var second = dt.getSeconds();
     console.log("year=" + year + ",month=" + month + ",day=" + day + ",hour=" + hour + ",minute=" + minute + ",second=" + second);
     var date = new Date(year, month, day, hour, minute, second);
+    console.log(date);
     var j = cron.scheduleJob(jobid, date, function() {
-        console.log(new Date(date), "定时任务开始--[指定时间执行]--预设置出价");
+        console.log("定时任务开始--[指定时间执行]--预设置出价" + new Date().toLocaleString());
         index1.login(1, arg);
         j.cancel();
         // forks.send(1, arg);

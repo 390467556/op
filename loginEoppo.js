@@ -24,12 +24,14 @@ var dir = data.dir;
 var username = data.account_username;
 var password = data.account_password;
 var price = data.price;
+var app_name = data.app_name;
 
 console.log("dir=" + dir);
 console.log("action=", action);
 console.log("username=" + username);
 console.log("password=" + password);
 console.log("price=" + price);
+console.log("app_name=" + app_name);
 
 var login_url = config.oppoUrl.elogin;
 
@@ -47,7 +49,7 @@ casper.waitFor(function check() {
     if (fs.exists(dir + '/' + config.filePath.checkCodeText)) {
         this.click('label[class="ownerType_label"]');
         var checkCode = fs.read(dir + '/' + config.filePath.checkCodeText).trim();
-        console.log("checkCode: " +checkCode);
+        console.log("checkCode: " + checkCode);
         this.fill('form[class="login_form"]', {
             'name': username,
             'passwd': password,
@@ -81,9 +83,9 @@ casper.then(function() {
                     cookie = cookieObj[i].value;
                 }
             }
-						console.log("登陆成功/" + cookie);
+            console.log("登陆成功/" + cookie);
             if (action === 1) {
-                distribute.updateDistribute(cookie, price);
+                distribute.update(cookie, price, app_name);
             } else if (action === 2) {
                 form.getDistribute(cookie);
             }

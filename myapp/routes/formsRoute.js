@@ -6,12 +6,7 @@ router.get('/', (req, res) => {
     console.log(`formBody: ${JSON.stringify(req.query.start)}`);
     // var data = JSON.stringify(formData());
     // res.render('forms', {data: data});
-<<<<<<< d5001dbac3bc98cdabcc6ed6e90887effe0f7873
     if (!req.query || !req.query.start || !req.query.end) {
-=======
-    if (!req.query ||  (!req.query.start && !req.query.end) ) {
-     
->>>>>>> restart
         db.findDefaltSpiderDataForFormsWithUsername(req.session.username,function(error,data){
             const result = JSON.stringify(data);
             // console.log(result);

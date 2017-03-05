@@ -91,7 +91,8 @@ function requestLogin(arg1, arg2, account_username, account_password, uid, platf
         'dir': dir,
         'account_username': account_username,
         'account_password': account_password,
-        'price': price
+        'price': price,
+        'app_name':app_name
     };
     console.log(JSON.stringify(data));
     var jsName;
